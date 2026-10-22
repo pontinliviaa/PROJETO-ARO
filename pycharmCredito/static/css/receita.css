@@ -1,0 +1,178 @@
+/* Estilo simples compartilhado pelas telas financeiras. */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font: 16px Arial, sans-serif;
+    color: #25232a;
+    background: #fcf9f9;
+}
+
+.cabecalho {
+    width: 100%;
+    min-height: 58px;
+    padding: 12px 3.3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px #00000020;
+    position: relative;
+    z-index: 2;
+}
+
+.logo {
+    width: 140px;
+    max-width: 100%;
+    height: auto;
+}
+.perfil {
+    width: 55px;
+    max-width: 100%;
+    height: auto;
+    margin-top: 5px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.menu a,
+.menu-rodape a {
+    color: #603b98;
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: color 0.2s;
+}
+
+.menu a:hover,
+.menu-rodape a:hover {
+    color: #8b61bd;
+}
+
+.acoes {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.botao-sair {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background-color: #603b98;
+    color: white;
+    cursor: pointer;
+}
+
+main {
+    max-width: 1050px;
+    margin: 32px auto;
+    padding: 0 20px;
+}
+
+section {
+    background: white;
+    padding: 24px;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 1px solid #dbe3ed;
+}
+
+.cadastro {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 520px;
+}
+
+input,
+select,
+button {
+    padding: 12px;
+    font: inherit;
+    border: 1px solid #a8b8c7;
+    border-radius: 6px;
+}
+
+button {
+    background: #603b98;
+    color: white;
+    cursor: pointer;
+}
+
+button.excluir {
+    background: #a62c35;
+}
+
+.tabela {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #dbe3ed;
+}
+
+.mensagem {
+    padding: 14px;
+    border-radius: 6px;
+}
+
+.success {
+    background: #d9f2e4;
+    color: #165534;
+}
+
+.error {
+    background: #fbe0e1;
+    color: #8f202a;
+}
+
+@media (max-width: 600px) {
+    header {
+        align-items: flex-start;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    section {
+        padding: 16px;
+    }
+}
+
+/* Evita que textos longos e controles ultrapassem a largura do celular. */
+input,
+select,
+textarea {
+    max-width: 100%;
+    min-width: 0;
+}
+
+button,
+a,
+p,
+h1,
+h2,
+h3,
+strong {
+    overflow-wrap: break-word;
+}

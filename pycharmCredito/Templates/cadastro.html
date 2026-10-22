@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Criar conta</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
+    </head>
+    <body>
+        <main class="pagina">
+            <section class="card">
+                <div class="icone-conta">
+                    <span>👤</span>
+                    <strong>+</strong>
+                </div>
+                <h1>Criar conta</h1>
+                <p class="descricao">Preencha seus dados para calibrar sua capacidade de pagamento com precisão analítica.</p>
+                <!-- Mensagens enviadas pelo Python -->
+                {% with mensagens = get_flashed_messages(with_categories=true) %}
+                    {% for categoria, mensagem in mensagens %}
+                        <p class="flash {{ categoria }}">{{ mensagem }}</p>
+                    {% endfor %}
+                {% endwith %}
+                <form action="{{ url_for('cadastro') }}" method="POST">
+                    <div class="campo">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" id="nome" name="nome" placeholder="Ex: Carlos Eduardo Silveira" required>
+                    </div>
+                    <div class="campo">
+                        <label for="email">E-mail corporativo ou pessoal</label>
+                        <input type="email" id="email" name="email" placeholder="carlos@exemplo.com.br" required>
+                    </div>
+                    <div class="campo">
+                        <label for="senha">Senha de acesso</label>
+                        <input type="password" id="senha" name="senha" placeholder="••••••••••••" minlength="8" required>
+                    </div>
+                    <div class="campo">
+                        <label for="confirmar_senha">Confirmar senha</label>
+                        <input type="password" id="confirmar_senha" name="confirmar_senha" placeholder="••••••••••••" minlength="8" required>
+                    </div>
+                    <div class="separador">
+                    </div>
+                    <div class="aviso-seguranca">
+                        <p>Seus dados estão protegidos de acordo com as normas da LGPD e utilizados unicamente para análise de risco ponderado.</p>
+                    </div>
+                    <button type="submit" class="botao-cadastrar">Cadastrar</button>
+                    <p class="texto-login">
+                        Já tem uma conta?
+                        <a href="{{ url_for('login') }}">Entrar</a>
+                    </p>
+                </form>
+            </section>
+            <footer>
+                <span>Criptografia ponta a ponta</span>
+                <span>Banco Central do Brasil</span>
+            </footer>
+        </main>
+    </body>
+</html>

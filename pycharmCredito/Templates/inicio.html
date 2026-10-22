@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início - ARO</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <a href="{{ url_for('novo') }}">
+            <img src="{{ url_for('static', filename='uploads/logo-horizontal.png') }}" alt="Logo ARO" class="logo">
+        </a>
+        <nav class="menu">
+            <a href="{{ url_for('novo') }}">Início</a>
+            <a><span>Empréstimos</span></a>
+            <a><span>Novo empréstimo</span></a>
+            <a><span>Movimento</span></a>
+        </nav>
+
+        <div class="acoes">
+            <form action="{{ url_for('logout') }}" method="POST">
+                <button type="submit" class="botao-sair">➜</button>
+            </form>
+            <a href="{{ url_for('perfil') }}">
+                <img src="{{ url_for('static', filename='uploads/perfil.png') }}" alt="Perfil" class="perfil">
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO -->
+    <main>
+
+        <h1>Olá, {{ usuario }}!</h1>
+
+        <!-- Somente a página do administrador tem este botão. -->
+        <a href="{{ url_for('receitas') }}" class="botao">Gerenciar receitas</a>
+        <a href="{{ url_for('despesas') }}" class="botao">Gerenciar despesas</a>
+        <a href="{{ url_for('saldo_atual') }}" class="botao">Gerenciar saldo atual</a>
+        <a href="{{ url_for('saldos_mensais') }}" class="botao">Gerenciar saldo mensal</a>
+
+
+
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+
+        {% for categoria, mensagem in mensagens %}
+        <p class="mensagem {{ categoria }}">{{ mensagem }}</p>
+
+        {% endfor %}
+
+        {% endwith %}
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ARO - Seu futuro financeiro</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <h1>ARO</h1>
+                <div class="menu">
+                    <a href="#inicio">Para você</a>
+                    <a href="#solucoes">Soluções</a>
+                    <a href="#seguranca">Segurança</a>
+                    <a href="#praticidade">Praticidade</a>
+                    <a href="{{ url_for('login') }}" class="entrar">Entrar</a>
+                </div>
+            </nav>
+            <p class="aviso">AMBIENTE ACADÊMICO - PROJETO EXPERIMENTAL 2026</p>
+        </header>
+        <main>
+            <section class="inicio" id="inicio">
+                <div class="conteudo">
+                    <span class="etiqueta">Conta para empreendedores</span>
+                    <h2>Mais controle para o seu futuro financeiro.</h2>
+                    <p>No ARO, você acompanha seus gastos, organiza suas finanças e conquista seus objetivos com segurança e praticidade.</p>
+                    <a href="{{ url_for('login') }}" class="botao">Login →</a>
+                </div>
+                <img src="{{ url_for('static', filename='uploads/pc-landing-page.png') }}" alt="Pc do sistema">
+            </section>
+            <section class="solucoes" id="solucoes">
+                <p>Por que escolher o ARO?</p>
+                <h2>
+                    Tudo o que você precisa para gerenciar
+                    <br>
+                    seu dinheiro, em um só lugar.
+                </h2>
+                <p>Oferecemos soluções simples e seguras para você ter mais liberdade e tranquilidade no seu dia a dia.</p>
+                <div class="cards">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='uploads/conta_digital.png') }}" class="icone-img" alt="Conta Digital">
+                        <h3>Conta digital completa</h3>
+                        <p>Abra sua conta em minutos e tenha tudo pelo celular.</p>
+                    </div>
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='uploads/cartao_sem_anuidade.png') }}" class="icone-img" alt="Cartão sem anuidade">
+                        <h3>Cartão sem anuidade</h3>
+                        <p>Mais praticidade e liberdade para o seu dia a dia.</p>
+                    </div>
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='uploads/seguranca_avancada.png') }}" class="icone-img" alt="Segurança Avançada ">
+                        <h3>Segurança avançada</h3>
+                        <p>Seus dados e seu dinheiro sempre protegidos.</p>
+                    </div>
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='uploads/suporte.png') }}" class="icone-img" alt="Suporte 24/7">
+                        <h3>Suporte 24/7</h3>
+                        <p>Estamos sempre aqui para te ajudar.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="seguranca" id="seguranca">
+                <img src="{{ url_for('static', filename='uploads/seguranca_aro.png') }}" alt="Segurança ARO">
+                <div>
+                    <h4>SEGURANÇA</h4>
+                    <h2>Seus dados e seu dinheiro sempre protegidos.</h2>
+                    <p>Utilizamos as mais modernas tecnologias de segurança para garantir que suas informações e transações estejam sempre protegidas, 24 horas por dia.</p>
+                </div>
+            </section>
+            <section class="praticidade" id="praticidade">
+                <div>
+                    <h4>PRATICIDADE</h4>
+                    <h2>Tudo na palma da sua mão.</h2>
+                    <p>Acesse sua conta, faça transferências, pague contas e acompanhe seus gastos, de onde estiver.</p>
+                </div>
+                <img src="{{ url_for('static', filename='uploads/celular-landing-page.png') }}" alt="Aplicativo ARO">
+            </section>
+            <section class="final">
+                <div>
+                    <h2>PRONTO PARA LEVAR SEU DINHEIRO MAIS LONGE?</h2>
+                    <p>Abra sua conta para empreendedores e comece a fazer suas finanças com o ARO.</p>
+                </div>
+                <a href="{{ url_for('login') }}" class="botao-final">Começar agora →</a>
+            </section>
+        </main>
+        <footer>
+            <div class="links">
+                <a href="#inicio">Para você</a>
+                <a href="#solucoes">Soluções</a>
+                <a href="#seguranca">Segurança</a>
+                <a href="#praticidade">Praticidade</a>
+            </div>
+            <p>Termos de uso | Política de privacidade</p>
+            <h4>© 2026 ARO. Todos os direitos reservados.</h4>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,555 @@
+/* Aparência das páginas financeiras do ARO */
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+body {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #faf8fa;
+
+    color: #25232a;
+
+}
+
+.pagina {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.cabecalho-aro {
+    width: 100%;
+    min-height: 65px;
+    padding: 12px 3.3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    background-color: white;
+    box-shadow: 0 2px 4px #00000020;
+}
+
+.marca-aro {
+    width: 100px;
+    flex-shrink: 0;
+}
+
+.cabecalho-aro .logo-aro {
+    display: block;
+    width: 100px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* MENU */
+
+.menu-aro {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+}
+
+.menu-aro a {
+    color: #603B98;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.menu-aro a:hover {
+    color: #45276F;
+}
+
+/* PERFIL E SAÍDA DO CABEÇALHO */
+
+.acoes-aro {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 22px;
+}
+
+.perfil-aro {
+    display: flex;
+    align-items: center;
+    color: #603B98;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+/* Aplica somente à imagem dentro do cabeçalho. */
+.cabecalho-aro .perfil,
+.acoes-aro img {
+    display: block;
+    width: 28px;
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+}
+
+.acoes-aro form {
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.cabecalho-aro .sair-aro {
+    width: auto;
+    margin: 0;
+    padding: 6px;
+    border: none;
+    background: none;
+    color: #171717;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.conteudo {
+
+    width: 100%;
+
+    max-width: 1060px;
+
+    margin: 35px auto 55px;
+
+    padding: 0 20px;
+
+    flex: 1;
+
+}
+
+h1 {
+
+    color: #5b3a8e;
+
+    font-size: 26px;
+
+    margin: 0 0 6px;
+
+}
+
+.subtitulo {
+
+    color: #77727f;
+
+    font-size: 13px;
+
+    margin: 0 0 26px;
+
+}
+
+.cartao {
+
+    background: white;
+
+    border: 1px solid #e5e0e8;
+
+    border-radius: 9px;
+
+    padding: 23px;
+
+    margin: 0 0 23px;
+
+    box-shadow: 0 3px 10px #00000007;
+
+}
+
+h2 {
+
+    font-size: 17px;
+
+    color: #5b3a8e;
+
+    margin: 0 0 17px;
+
+}
+
+.form-card {
+
+    min-height: 300px;
+
+}
+
+label {
+
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin: 13px 0 6px;
+
+}
+
+input,
+
+select {
+
+    display: block;
+
+    background: #f6f3f6;
+
+    border: 1px solid #e7e3e9;
+
+    border-radius: 5px;
+
+    padding: 10px;
+
+    width: 100%;
+
+    max-width: 430px;
+
+    font: inherit;
+
+    font-size: 13px;
+
+    color: #25232a;
+
+}
+
+input:focus,
+
+select:focus {
+
+    outline: 2px solid #8b6bb1;
+
+}
+
+.acoes {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 18px;
+
+}
+
+button,
+
+.atalhos a {
+
+    background: #5b3a8e;
+
+    color: white;
+
+    border: 0;
+
+    padding: 10px 16px;
+
+    border-radius: 5px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+}
+
+button:hover,
+
+.atalhos a:hover {
+
+    background: #4a2e75;
+
+}
+
+.cancelar,
+
+.link-editar {
+
+    color: #5b3a8e;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+.perigo {
+
+    background: transparent;
+
+    color: #bd3838;
+
+    padding: 0;
+
+}
+
+.perigo:hover {
+
+    color: #9b2020;
+
+    background: transparent;
+
+    text-decoration: underline;
+
+}
+
+.tabela-rolagem {
+
+    overflow-x: auto;
+
+}
+
+table {
+
+    border-collapse: collapse;
+
+    width: 100%;
+
+    min-width: 490px;
+
+}
+
+th {
+
+    background: #f6f3f6;
+
+    color: #5b3a8e;
+
+    font-weight: bold;
+
+    font-size: 12px;
+
+}
+
+th,
+
+td {
+
+    text-align: left;
+
+    padding: 12px 10px;
+
+    border-bottom: 1px solid #ece8ed;
+
+}
+
+td {
+
+    font-size: 13px;
+
+}
+
+.acoes-tabela {
+
+    display: flex;
+
+    gap: 14px;
+
+    align-items: center;
+
+    white-space: nowrap;
+
+}
+
+.acoes-tabela form {
+
+    margin: 0;
+
+}
+
+.taxas-layout {
+
+    display: grid;
+
+    grid-template-columns: 320px minmax(0, 1fr);
+
+    gap: 20px;
+
+}
+
+.taxas-layout .cartao {
+
+    margin-bottom: 0;
+
+}
+
+.taxas-layout .acoes button {
+
+    width: 100%;
+
+}
+
+.observacao {
+
+    font-size: 13px;
+
+    color: #77727f;
+
+    line-height: 1.5;
+
+}
+
+.mensagem {
+
+    padding: 12px;
+
+    margin: 0 0 18px;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+
+}
+
+.error {
+
+    color: #9c2525;
+
+    background: #fff0f0;
+
+}
+
+.success {
+
+    color: #176634;
+
+    background: #eefaf0;
+
+}
+
+.positivo {
+
+    color: #228448;
+
+    font-weight: bold;
+
+}
+
+.negativo {
+
+    color: #b63636;
+
+    font-weight: bold;
+
+}
+
+.atalhos {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 24px;
+
+}
+
+.rodape {
+
+    text-align: center;
+
+    background: #eee1ff;
+
+    padding: 23px 15px 12px;
+
+}
+
+.rodape nav {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 30px;
+
+}
+
+.rodape nav a {
+
+    text-decoration: none;
+
+    color: #5b3a8e;
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+}
+
+.rodape p {
+
+    font-size: 12px;
+
+    margin: 19px 0 0;
+
+}
+
+.rodape .direitos {
+
+    font-weight: bold;
+
+    color: #16121b;
+
+}
+
+@media (max-width: 720px) {
+
+    .cabecalho {
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+    }
+
+    .menu {
+
+        justify-content: center;
+
+        gap: 12px;
+
+    }
+
+    .conteudo {
+
+        margin-top: 24px;
+
+    }
+
+    .taxas-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .cartao {
+
+        padding: 16px;
+
+    }
+
+}

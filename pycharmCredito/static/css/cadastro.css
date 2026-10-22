@@ -1,0 +1,320 @@
+/* Estilo da página */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #faf9f8;
+    color: #222;
+    min-height: 100vh;
+}
+
+.pagina {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 900px;
+    background-color: #ffffff;
+    padding: 36px;
+    border-radius: 18px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+}
+
+.icone-conta {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 12px;
+    background-color: #eee5ff;
+}
+
+.icone-conta span {
+    font-size: 23px;
+    color: #654096;
+}
+
+.icone-conta strong {
+    position: absolute;
+    top: -5px;
+    right: -4px;
+    color: #654096;
+    font-size: 12px;
+}
+
+.card h1 {
+    text-align: center;
+    color: #604092;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.descricao {
+    text-align: center;
+    color: #89838d;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 28px;
+}
+
+form {
+    width: 100%;
+}
+
+.linha {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.linha /* Campos do formulário */
+.campo {
+    width: 50%;
+}
+
+.campo {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.campo label {
+    display: block;
+    color: #202020;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.campo input {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f0eeee;
+    padding: 0 15px;
+    color: #444;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.campo input::placeholder {
+    color: #99939d;
+    opacity: 1;
+}
+
+.campo input:focus {
+    background-color: #eeecec;
+    outline: 2px solid #70439b;
+}
+
+.separador {
+    width: 100%;
+    height: 1px;
+    background-color: #eeeeee;
+    margin: 8px 0 22px;
+}
+
+.card h2 {
+    color: #77717d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    margin-bottom: 20px;
+}
+
+.aviso-seguranca {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    background-color: #faf7f7;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin: 8px 0 24px;
+}
+
+.aviso-seguranca::before {
+    content: "🔒";
+    font-size: 16px;
+    margin-right: 12px;
+}
+
+.aviso-seguranca p {
+    margin: 0;
+    color: #89838d;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Botão de cadastro */
+.botao-cadastrar {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00683f;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 104, 63, 0.18);
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.botao-cadastrar:hover {
+    background-color: #005735;
+    transform: translateY(-1px);
+}
+
+.texto-login {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 15px;
+    color: #77727F;
+}
+
+.texto-login a {
+    color: #5B3A8E;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.texto-login a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding: 0 5px;
+    color: #aaa4ad;
+    font-size: 11px;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 700px) {
+    .pagina {
+        padding: 25px 15px;
+    }
+
+    .card {
+        padding: 28px 24px;
+    }
+
+    .card h1 {
+        font-size: 25px;
+    }
+
+    .descricao {
+        font-size: 12px;
+    }
+
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 500px) {
+    .pagina {
+        padding: 20px 12px;
+        justify-content: flex-start;
+    }
+
+    .card {
+        padding: 25px 18px;
+        border-radius: 12px;
+    }
+
+    .card h1 {
+        font-size: 23px;
+    }
+
+    .descricao {
+        font-size: 12px;
+    }
+
+    .linha {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .linha .campo {
+        width: 100%;
+    }
+
+    .campo {
+        margin-bottom: 17px;
+    }
+
+    .campo label {
+        font-size: 12px;
+    }
+
+    .campo input {
+        height: 46px;
+        font-size: 14px;
+    }
+
+    .botao-cadastrar {
+        height: 48px;
+        font-size: 14px;
+    }
+
+    .texto-login {
+        font-size: 13px;
+    }
+
+    footer {
+        font-size: 9px;
+        padding: 0 3px;
+        gap: 10px;
+    }
+
+}
+
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.flash.error {
+    background-color: #fff0f0;
+    color: #b33a3a;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.flash.success {
+    background-color: #eaf7ef;
+    color: #00683f;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}

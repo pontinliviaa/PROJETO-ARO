@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxa de juros - ARO</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/financeiro.css') }}">
+</head>
+
+<body>
+    <div class="pagina">
+
+        <header class="cabecalho-aro">
+        <a href="{{ url_for('novo') }}" class="marca-aro">
+            <img
+                src="{{ url_for('static', filename='uploads/logo-horizontal.png') }}"
+                alt="Logo ARO"
+                class="logo-aro">
+        </a>
+
+        <nav class="menu-aro">
+            <a href="{{ url_for('novo') }}">Início</a>
+            <a href="{{ url_for('pagina_taxas') }}">Taxas</a>
+            <a href="#">Exercícios</a>
+            <a href="#">Empreendedores</a>
+        </nav>
+
+        <div class="acoes-aro">
+            <a href="{{ url_for('perfil_adm') }}">
+                <img src="{{ url_for('static', filename='uploads/perfil.png') }}" alt="Perfil" class="perfil">
+            </a>
+
+            <form action="{{ url_for('logout') }}" method="POST">
+                <button type="submit" class="sair-aro">Sair</button>
+            </form>
+        </div>
+    </header>
+
+        <main class="conteudo">
+            <h1>Taxa de juros</h1>
+            <p class="subtitulo">Gerencie as taxas mensais por data de referência.</p>
+
+            {% with mensagens = get_flashed_messages(with_categories=true) %}
+
+            {% for categoria, mensagem in mensagens %}
+            <p class="mensagem {{ categoria }}">{{ mensagem }}</p>
+
+            {% endfor %}
+
+            {% endwith %}
+
+            <div class="taxas-layout">
+
+                <section class="cartao">
+                    <h2>
+
+                        {% if editar %}
+
+                        Editar taxa
+
+                        {% else %}
+
+                        Cadastro de taxa
+
+                        {% endif %}
+                    </h2>
+
+                    <form method="POST"
+                        action="{% if editar %}{{ url_for('editar_taxa', id_taxa=editar[0]) }}{% else %}{{ url_for('cadastrar_taxa') }}{% endif %}">
+
+                        <label for="percentual">Taxa de juros mensal (%)</label>
+
+                        <input id="percentual" type="number" name="percentual" min="0.01" max="100" step="0.01"
+                            placeholder="Ex.: 1.5" required value="{{ editar[1] if editar else '' }}">
+
+                        <p class="observacao">
+
+                            Data de referência:
+
+                            {% if editar %}
+
+                            {{ editar[2] }}
+
+                            {% else %}
+
+                            preenchida automaticamente ao salvar
+
+                            {% endif %}.
+                        </p>
+
+                        <div class="acoes">
+                            <button type="submit">Salvar taxa</button>
+
+                            {% if editar %}
+                            <a class="cancelar" href="{{ url_for('pagina_taxas') }}">Cancelar</a>
+
+                            {% endif %}
+                        </div>
+                    </form>
+                </section>
+
+                <section class="cartao">
+                    <h2>Taxas cadastradas</h2>
+
+                    <div class="tabela-rolagem">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Taxa mensal (%)</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                {% for taxa in taxas %}
+                                <tr>
+                                    <td>{{ taxa[2] }}</td>
+                                    <td>{{ taxa[1] }}%</td>
+
+                                    <td class="acoes-tabela">
+
+
+                                        <a class="link-editar" href="{{ url_for('pagina_taxas', editar=taxa[0]) }}">
+
+                                            Editar
+                                        </a>
+
+                                        <form method="POST" action="{{ url_for('excluir_taxa', id_taxa=taxa[0]) }}"
+                                            onsubmit="return confirm('Deseja excluir esta taxa?')">
+                                            <button type="submit" class="perigo">
+
+                                                Excluir
+                                            </button>
+                                        </form>
+
+                                    </td>
+                                </tr>
+
+                                {% else %}
+                                <tr>
+                                    <td colspan="3">Nenhuma taxa cadastrada.</td>
+                                </tr>
+
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <footer class="rodape">
+            <nav>
+                <a href="{{ url_for('novo') }}">Início</a>
+                <a href="{{ url_for('receitas') }}">Receitas</a>
+                <a href="{{ url_for('despesas') }}">Despesas</a>
+                <a href="{{ url_for('saldos_mensais') }}">Saldo mensal</a>
+                <a href="{{ url_for('pagina_taxas') }}">Taxas</a>
+            </nav>
+
+            <p>Termos de uso | Política de privacidade</p>
+            <p class="direitos">© 2026 ARO. Todos os direitos reservados.</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Entrar | ARO</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    </head>
+    <body>
+        <main class="pagina-login">
+            <section class="area-logo">
+                <img src="{{ url_for('static', filename='uploads/logo-horizontal.png') }}" alt="Logo ARO" class="logo-aro">
+            </section>
+            <section class="area-login">
+                <div class="card-login">
+                    <div class="cabecalho-login">
+                        <h1>Entre na sua conta</h1>
+                        <p>Informe seus dados de acesso abaixo para prosseguir.</p>
+                    </div>
+                    <form action="{{ url_for('entrar_usuario') }}" method="POST" class="form-login">
+                        <div class="campo">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                        </div>
+                        <div class="campo">
+                            <label for="senha">Senha</label>
+                            <input type="password" id="senha" name="senha" placeholder="••••••••" required>
+                        </div>
+                        {% with mensagens = get_flashed_messages(with_categories=true) %}
+                            {% if mensagens %}
+                                <div class="mensagens">
+                                    {% for categoria, mensagem in mensagens %}
+                                        <p class="{{ categoria }}">{{ mensagem }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                        <button type="submit" class="botao-login">ENTRAR NA MINHA CONTA</button>
+                    </form>
+                </div>
+                <div class="criar-conta">
+                    <p>Ainda não possui uma conta?</p>
+                    <a href="{{ url_for('pagina_cadastro') }}">Criar uma conta</a>
+                </div>
+                <div class="seguranca">
+                    <span class="cadeado">🔒</span>
+                    <span>Ambiente seguro com criptografia 256-bit</span>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,284 @@
+/* Estilo da página */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #faf9f8;
+    color: #25232a;
+    min-height: 100vh;
+}
+
+.pagina-login {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+    padding: 40px;
+}
+
+.area-logo {
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-aro {
+    width: 230px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.area-login {
+    width: 620px;
+    max-width: 100%;
+}
+
+.card-login {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 45px;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.cabecalho-login {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.cabecalho-login h1 {
+    color: #604092;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.cabecalho-login p {
+    color: #89838d;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form-login {
+    width: 100%;
+}
+
+/* Campos do formulário */
+.campo {
+    margin-bottom: 24px;
+}
+
+.campo label {
+    display: block;
+    color: #303030;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.campo input {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f0eeee;
+    padding: 0 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #444;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.campo input::placeholder {
+    color: #99939d;
+    opacity: 1;
+}
+
+.campo input:focus {
+    background-color: #eeecec;
+    outline: 2px solid #70439b;
+}
+
+/* Mensagens do Python */
+.mensagens {
+    margin: 10px 0 20px;
+    text-align: center;
+}
+
+.mensagens p {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.mensagens .error {
+    color: #b33a3a;
+    background-color: #fff0f0;
+}
+
+.mensagens .success {
+    color: #00683f;
+    background-color: #eaf7ef;
+}
+
+/* Botão de entrada */
+.botao-login {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 8px;
+    background-color: #63409a;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(99, 64, 154, 0.18);
+    transition: 0.2s ease;
+}
+
+.botao-login:hover {
+    background-color: #543487;
+    transform: translateY(-1px);
+}
+
+.criar-conta {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.criar-conta p {
+    color: #99939d;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.criar-conta a {
+    color: #63409a;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.criar-conta a:hover {
+    text-decoration: underline;
+}
+
+.seguranca {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    color: #99939d;
+    font-size: 12px;
+}
+
+.cadeado {
+    margin-right: 8px;
+    font-size: 16px;
+    color: #77717d;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 1000px) {
+    .pagina-login {
+        gap: 35px;
+        padding: 30px;
+    }
+
+    .area-logo {
+        width: 200px;
+    }
+
+    .logo-aro {
+        width: 170px;
+    }
+
+    .area-login {
+        width: 560px;
+    }
+
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 700px) {
+    .pagina-login {
+        flex-direction: column;
+        gap: 25px;
+        padding: 30px 20px;
+    }
+
+    .area-logo {
+        width: 100%;
+    }
+
+    .logo-aro {
+        width: 140px;
+    }
+
+    .area-login {
+        width: 100%;
+    }
+
+    .card-login {
+        padding: 30px 22px;
+    }
+
+    .cabecalho-login {
+        margin-bottom: 28px;
+    }
+
+    .cabecalho-login h1 {
+        font-size: 24px;
+    }
+
+    .campo input {
+        height: 48px;
+    }
+
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 400px) {
+    .card-login {
+        padding: 25px 18px;
+    }
+
+    .cabecalho-login h1 {
+        font-size: 22px;
+    }
+
+    .cabecalho-login p {
+        font-size: 13px;
+    }
+
+    .campo label {
+        font-size: 13px;
+    }
+
+    .campo input {
+        height: 46px;
+        font-size: 14px;
+    }
+
+    .botao-login {
+        height: 48px;
+        font-size: 13px;
+    }
+
+    .seguranca {
+        font-size: 11px;
+    }
+
+}

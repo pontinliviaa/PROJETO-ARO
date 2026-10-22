@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despesas - ARO</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/receita.css') }}">
+</head>
+<body>
+    <!-- CABEÇALHO -->
+    <header class="cabecalho">
+        <a href="{{ url_for('novo') }}">
+            <img src="{{ url_for('static', filename='uploads/logo-horizontal.png') }}" alt="Logo ARO" class="logo">
+        </a>
+        <nav class="menu">
+            <a href="{{ url_for('novo') }}">Início</a>
+            <a><span>Empréstimos</span></a>
+            <a><span>Novo empréstimo</span></a>
+            <a><span>Movimento</span></a>
+        </nav>
+
+        <div class="acoes">
+            <form action="{{ url_for('logout') }}" method="POST">
+                <button type="submit" class="botao-sair">➜</button>
+            </form>
+            <a href="{{ url_for('perfil') }}">
+                <img src="{{ url_for('static', filename='uploads/perfil.png') }}" alt="Perfil" class="perfil">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <h1>Despesas</h1>
+
+        <!-- MENSAGENS -->
+        {% for categoria, mensagem in get_flashed_messages(with_categories=true) %}
+            <p class="mensagem {{ categoria }}">{{ mensagem }}</p>
+        {% endfor %}
+
+        <!-- CADASTRO E EDIÇÃO -->
+        <section>
+            <h2>{{ 'Editar despesa' if registro else 'Cadastrar despesa' }}</h2>
+            {% if registro %}
+            <form method="POST" action="{{ url_for('despesas', id_registro=registro[0]) }}" class="cadastro">
+            {% else %}
+            <form method="POST" action="{{ url_for('despesas') }}" class="cadastro">
+            {% endif %}
+                <label for="descricao">Descrição</label>
+                <input id="descricao" name="descricao" maxlength="100" required
+                       value="{{ registro[1] if registro else '' }}">
+
+                <label for="valor">Valor (R$)</label>
+                <input type="number" id="valor" name="valor" step="0.01" min="0.01"
+                       max="9999999999.99" required value="{{ registro[2] if registro else '' }}">
+
+                <label for="data">Data</label>
+                <input type="date" id="data" name="data" required
+                       value="{{ registro[3].isoformat() if registro else hoje }}">
+
+                <label for="classificacao">Classificação</label>
+                <select id="classificacao" name="classificacao" required>
+                    <option value="Fixa" {% if registro and registro[4] == 'Fixa' %}selected{% endif %}>Fixa</option>
+                    <option value="Variavel" {% if registro and registro[4] == 'Variavel' %}selected{% endif %}>Variável</option>
+                </select>
+                <button type="submit">{{ 'Salvar alterações' if registro else 'Cadastrar despesa' }}</button>
+                {% if registro %}
+                    <a href="{{ url_for('despesas') }}">Cancelar edição</a>
+                {% endif %}
+            </form>
+        </section>
+
+        <!-- LISTAGEM -->
+        <section>
+            <h2>Despesas cadastradas</h2>
+            <div class="tabela">
+                <table>
+                    <thead>
+                        <tr><th>Descrição</th><th>Valor</th><th>Data</th><th>Classificação</th><th>Ações</th></tr>
+                    </thead>
+                    <tbody>
+                        {% for item in registros %}
+                        <tr>
+                            <td>{{ item[1] }}</td>
+                            <td>R$ {{ item[2] }}</td>
+                            <td>{{ item[3] }}</td>
+                            <td>{{ item[4] }}</td>
+                            <td>
+                                <div class="acoes">
+                                    <a href="{{ url_for('despesas', id_registro=item[0]) }}">Editar</a>
+                                    <form method="POST" action="{{ url_for('excluir_despesa', id_registro=item[0]) }}">
+                                        <button type="submit" class="excluir">Excluir</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr><td colspan="5">Nenhuma despesa cadastrada.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

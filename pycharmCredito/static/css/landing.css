@@ -1,0 +1,426 @@
+/* Estilo da página */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ddd2eb;
+    color: #25232A;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: #5B3A8E;
+}
+
+img {
+    max-width: 100%;
+}
+
+header {
+    background-color: #6A4598;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 7%;
+    background-color: #dcd0eb;
+}
+
+nav h1 {
+    font-size: 35px;
+    color: #5B3A8E;
+    font-weight: 800;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.menu a {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.menu .entrar {
+    background-color: #5B3A8E;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+}
+
+.aviso {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    padding: 5px;
+    margin: 0;
+}
+
+/* Apresentação do site */
+.inicio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 60px 7%;
+    border-bottom: 4px solid #6A4598;
+}
+
+.conteudo {
+    width: 50%;
+}
+
+.etiqueta {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #d2b0f1;
+    border-radius: 30px;
+    color: #5B3A8E;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.inicio h2 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #5B3A8E;
+    line-height: 1.2;
+}
+
+.inicio p {
+    font-size: 15px;
+    font-weight: 400;
+    color: #77727F;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.inicio img {
+    width: 45%;
+    height: auto;
+    object-fit: contain;
+}
+
+.botao {
+    display: inline-block;
+    padding: 12px 45px;
+    border: 2px solid #5B3A8E;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.solucoes {
+    text-align: center;
+    padding: 60px 7%;
+}
+
+.solucoes h2 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.solucoes > p {
+    color: #5B3A8E;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.card {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+}
+
+.icone-img {
+    display: block;
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    margin: 0 auto 20px;
+}
+
+.card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #77727F;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.seguranca {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 60px 7%;
+    background-color: #c5a0f4;
+}
+
+.seguranca img {
+    width: 35%;
+    height: auto;
+    object-fit: contain;
+}
+
+.seguranca div {
+    flex: 1;
+}
+
+.seguranca h4 {
+    margin-bottom: 15px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.seguranca h2 {
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.seguranca p {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.praticidade {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    padding: 60px 7%;
+}
+
+.praticidade div {
+    width: 50%;
+}
+
+.praticidade h4 {
+    margin-bottom: 15px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.praticidade h2 {
+    color: #5B3A8E;
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.praticidade p {
+    color: #77727F;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.praticidade img {
+    width: 35%;
+    height: auto;
+    object-fit: contain;
+}
+
+.final {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 45px 7%;
+    background-color: #c5a0f4;
+    color: white;
+}
+
+.final div {
+    width: 60%;
+}
+
+.final h2 {
+    max-width: 450px;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.final p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.botao-final {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 30px;
+    background-color: #5B3A8E;
+    color: white;
+    border: 2px solid white;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+footer {
+    padding: 35px;
+    text-align: center;
+    background-color: #ddd2eb;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 25px;
+}
+
+.links a {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+footer p {
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+footer h4 {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 900px) {
+    .menu {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .inicio h2 {
+        font-size: 32px;
+    }
+
+    .cards {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        flex: none;
+        width: 45%;
+    }
+
+    .seguranca h2 {
+        font-size: 26px;
+    }
+
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .menu {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .inicio,
+    .seguranca,
+    .praticidade,
+    .final {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .conteudo,
+    .seguranca div,
+    .praticidade div,
+    .final div {
+        width: 100%;
+    }
+
+    .inicio h2 {
+        font-size: 28px;
+    }
+
+    .inicio img,
+    .seguranca img,
+    .praticidade img {
+        width: 80%;
+    }
+
+    .solucoes h2 {
+        font-size: 24px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .icone-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .seguranca h2 {
+        font-size: 26px;
+    }
+
+    .praticidade h2 {
+        font-size: 28px;
+    }
+
+    .final h2 {
+        font-size: 24px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .links {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+}

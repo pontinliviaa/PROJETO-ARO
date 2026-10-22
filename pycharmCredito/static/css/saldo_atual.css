@@ -1,0 +1,531 @@
+/* Estilo da página */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    background: #fcf9f9;
+    color: #080808;
+}
+
+.pagina {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #fcf9f9;
+}
+
+.cabecalho {
+    width: 100%;
+    min-height: 58px;
+    padding: 12px 3.3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px #00000020;
+    position: relative;
+    z-index: 2;
+}
+
+.logo {
+    width: 140px;
+    max-width: 100%;
+    height: auto;
+}
+.perfil {
+    width: 55px;
+    max-width: 100%;
+    height: auto;
+    margin-top: 5px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.menu a,
+.menu-rodape a {
+    color: #603b98;
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: color 0.2s;
+}
+
+.menu a:hover,
+.menu-rodape a:hover {
+    color: #8b61bd;
+}
+
+.acoes {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.botao-sair {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background-color: #603b98;
+    color: white;
+    cursor: pointer;
+}
+
+.usuario {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: #603b98;
+    font-size: 12px;
+}
+
+.conteudo {
+    flex: 1;
+    width: 100%;
+    padding: 55px 3.3% 60px;
+}
+
+.introducao {
+    width: 100%;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.introducao h1 {
+    color: #603b98;
+    font-size: 28px;
+    margin-bottom: 9px;
+}
+
+.introducao p {
+    color: #85808a;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Formulário e resumo do saldo */
+.painel {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    gap: 28px;
+}
+
+.formulario {
+    flex: 3;
+    width: 100%;
+    min-width: 0;
+}
+
+.formulario h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.descricao {
+    color: #85808a;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+#form-saldo {
+    width: 100%;
+}
+
+/* Campos do formulário */
+.campo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.campo label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.campo input {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    height: 64px;
+    padding: 16px 18px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    outline: none;
+    background: #f0eded;
+    color: #111;
+    font-family: inherit;
+    font-size: 16px;
+    transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.campo input:focus {
+    border-color: #603b98;
+    background: white;
+    box-shadow: 0 0 0 3px #603b9815;
+}
+
+.campo input::placeholder {
+    color: #444;
+    opacity: 1;
+}
+
+#form-saldo button {
+    display: block;
+    margin-left: auto;
+    min-height: 52px;
+    padding: 16px 25px;
+    border: none;
+    border-radius: 9px;
+    background: #603b98;
+    color: white;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+    background-color 0.2s,
+    transform 0.2s;
+}
+
+#form-saldo button:hover {
+    background: #523184;
+}
+
+#form-saldo button:active {
+    transform: scale(0.98);
+}
+
+.resumo {
+    flex: 2;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 150px;
+}
+
+.cartao-saldo {
+    width: 100%;
+    min-height: 120px;
+    padding: 22px 20px;
+    border-radius: 10px;
+    background: #f0e1ff;
+}
+
+.cartao-saldo p:first-child {
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.cartao-saldo h2 {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.cartao-saldo .mensagem {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #603b98;
+}
+
+.seguranca {
+    width: 100%;
+    min-height: 55px;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.icone-cadeado {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f0e1ff;
+    font-size: 13px;
+}
+
+.seguranca p {
+    color: #85808a;
+    font-size: 11px;
+}
+
+.rodape {
+    width: 100%;
+    min-height: 145px;
+    padding: 18px 20px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    background: #f0e1ff;
+}
+
+.menu-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.links-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+}
+
+.direitos {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 900px) {
+    .cabecalho {
+        padding: 14px 3%;
+        flex-wrap: wrap;
+    }
+
+    .menu {
+        gap: 18px;
+    }
+
+    .menu a {
+        font-size: 14px;
+    }
+
+    .conteudo {
+        padding: 50px 3% 50px;
+    }
+
+    .painel {
+
+        gap: 20px;
+    }
+
+    .campo input {
+        height: 60px;
+    }
+
+    .cartao-saldo h2 {
+        font-size: 28px;
+    }
+
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 600px) {
+    .cabecalho {
+        padding: 14px 18px;
+        gap: 14px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .acoes {
+        margin-left: auto;
+    }
+
+    .menu {
+        width: 100%;
+        order: 3;
+        justify-content: flex-start;
+        gap: 22px;
+        overflow-x: auto;
+        padding: 7px 0;
+    }
+
+    .menu a {
+        font-size: 13px;
+    }
+
+    .conteudo {
+        padding: 38px 18px 45px;
+    }
+
+    .introducao {
+        margin-bottom: 28px;
+        text-align: center;
+    }
+
+    .introducao h1 {
+        font-size: 25px;
+    }
+
+    .introducao p {
+        font-size: 12px;
+    }
+
+    .painel {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .formulario h2 {
+        font-size: 20px;
+    }
+
+    .descricao {
+        font-size: 12px;
+        margin-bottom: 22px;
+    }
+
+    .campo {
+        gap: 10px;
+        margin-bottom: 23px;
+    }
+
+    .campo label {
+        font-size: 14px;
+    }
+
+    .campo input {
+        height: 58px;
+        padding: 15px;
+        font-size: 16px;
+        border-radius: 9px;
+    }
+
+    #form-saldo button {
+        min-height: 52px;
+        padding: 15px 22px;
+        font-size: 14px;
+    }
+
+    .resumo {
+        flex: 2;
+        margin-top: 0;
+    }
+
+    .cartao-saldo {
+        min-height: 110px;
+        padding: 20px 16px;
+    }
+
+    .cartao-saldo h2 {
+        font-size: 30px;
+    }
+
+    .seguranca {
+        min-height: 50px;
+    }
+
+    .seguranca p {
+        font-size: 10px;
+    }
+
+    .rodape {
+        min-height: 150px;
+        padding: 24px 16px 18px;
+        gap: 24px;
+    }
+
+    .menu-rodape {
+        gap: 18px 22px;
+    }
+
+    .menu-rodape a {
+        font-size: 14px;
+    }
+
+    .links-rodape {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .direitos {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 360px) {
+    .conteudo {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .introducao h1 {
+        font-size: 23px;
+    }
+
+    .campo input {
+        height: 55px;
+        font-size: 15px;
+    }
+
+    .cartao-saldo h2 {
+        font-size: 26px;
+    }
+
+    .menu {
+        gap: 16px;
+    }
+
+    .menu-rodape {
+        gap: 14px;
+    }
+
+}
+
+/* Botão de saída */
+.botao-sair {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background-color: #603b98;
+    color: white;
+    cursor: pointer;
+}

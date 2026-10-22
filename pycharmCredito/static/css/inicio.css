@@ -1,0 +1,254 @@
+
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    background-color: #F7F7FA;
+
+    color: #25232A;
+
+}
+
+.cabecalho {
+    width: 100%;
+    min-height: 58px;
+    padding: 12px 3.3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px #00000020;
+    position: relative;
+    z-index: 2;
+}
+
+.logo {
+    width: 140px;
+    max-width: 100%;
+    height: auto;
+}
+.perfil {
+    width: 55px;
+    max-width: 100%;
+    height: auto;
+    margin-top: 5px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.menu a,
+.menu-rodape a {
+    color: #603b98;
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: color 0.2s;
+}
+
+.menu a:hover,
+.menu-rodape a:hover {
+    color: #8b61bd;
+}
+
+.acoes {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.botao-sair {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background-color: #603b98;
+    color: white;
+    cursor: pointer;
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+main {
+
+    width: 85%;
+
+    max-width: 1100px;
+
+    margin: 50px auto;
+
+    min-height: 400px;
+
+}
+
+main h1 {
+
+    color: #25232A;
+
+    font-size: 30px;
+
+    margin-bottom: 25px;
+
+}
+
+/* MENSAGENS */
+
+.mensagem {
+
+    padding: 12px 15px;
+
+    margin-bottom: 15px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+}
+
+.mensagem.success {
+
+    background-color: #D8F3E3;
+
+    color: #267447;
+
+}
+
+.mensagem.error {
+
+    background-color: #F8D7DA;
+
+    color: #A52A35;
+
+}
+.botao {
+   display: block;
+   background-color: #29245f;
+   color: white;
+   text-decoration: none;
+   text-align: center;
+   padding: 13px;
+   border-radius: 8px;
+   transition: 0.3s;
+   margin-top: 30px;
+}
+.botao:hover {
+   background-color: #423b85;
+}
+
+/* TABLET */
+
+@media (max-width: 1000px) {
+
+    .cabecalho {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        padding: 20px;
+
+    }
+
+    .menu {
+
+        gap: 15px;
+
+    }
+
+    .menu a {
+
+        font-size: 13px;
+
+    }
+
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+    .cabecalho {
+
+        flex-direction: column;
+
+        gap: 20px;
+
+    }
+
+    .logo {
+
+        width: 100px;
+
+    }
+
+    .menu {
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+
+    }
+
+    .menu a {
+
+        font-size: 12px;
+
+    }
+
+    main {
+
+        width: 92%;
+
+        margin: 35px auto;
+
+    }
+
+    main h1 {
+
+        font-size: 24px;
+
+    }
+
+    .botao-sair {
+
+        padding: 10px 30px;
+
+    }
+
+}
+
+
+/* BOTÃO DA PÁGINA DO ADMINISTRADOR */
+.botao-taxas {
+    display: inline-block;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    background-color: #603b98;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.botao-taxas:hover {
+    background-color: #8b61bd;
+}
