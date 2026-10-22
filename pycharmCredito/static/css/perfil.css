@@ -1,3 +1,4 @@
+
 /* CONFIGURAÇÕES GERAIS */
 
 * {
@@ -11,6 +12,7 @@ body {
     background-color: #FCF9F9;
     color: #25232A;
 }
+
 
 /* CABEÇALHO */
 
@@ -46,7 +48,8 @@ body {
     border-radius: 0;
 }
 
-/* MENU */
+
+/* MENU SUPERIOR */
 
 .menu {
     display: flex;
@@ -66,6 +69,7 @@ body {
 .menu a:hover {
     color: #8B61BD;
 }
+
 
 /* AÇÕES DO CABEÇALHO */
 
@@ -95,6 +99,7 @@ body {
     background-color: #45276F;
 }
 
+
 /* CONTEÚDO PRINCIPAL */
 
 main {
@@ -114,6 +119,7 @@ main > h3 {
     margin-bottom: 25px;
 }
 
+
 /* CARTÃO DO PERFIL */
 
 main .perfil {
@@ -128,7 +134,8 @@ main .perfil {
     border-radius: 10px;
 }
 
-/* FOTO */
+
+/* FOTO DO PERFIL */
 
 .foto-perfil {
     width: 40%;
@@ -151,6 +158,7 @@ main .perfil {
 .foto-perfil h3 {
     font-size: 18px;
 }
+
 
 /* DADOS DO USUÁRIO */
 
@@ -186,6 +194,7 @@ main .perfil {
     overflow-wrap: break-word;
 }
 
+
 /* BOTÃO ALTERAR DADOS */
 
 .alterar {
@@ -205,10 +214,13 @@ main .perfil {
     background-color: #45276F;
 }
 
+.perfil3 {
+    width: 250px;
+}
+
 /* BOTÃO SAIR DA CONTA */
 
 .sair {
-    width: 100%;
     margin-top: 18px;
     padding: 13px 20px;
     border: none;
@@ -225,7 +237,8 @@ main .perfil {
     background-color: #DEA1A1;
 }
 
-/* RODAPÉ */
+
+/* RODAPÉ TRADICIONAL */
 
 footer {
     min-height: 155px;
@@ -259,9 +272,18 @@ footer .direitos {
     font-weight: bold;
 }
 
-/* TABLET */
+
+/* MENU MOBILE ESCONDIDO NO COMPUTADOR */
+
+.menu-rodape {
+    display: none;
+}
+
+
+/* TABLET - ATÉ 1000PX */
 
 @media (max-width: 1000px) {
+
     .cabecalho {
         flex-wrap: wrap;
         justify-content: center;
@@ -283,20 +305,173 @@ footer .direitos {
         padding: 45px 30px;
         gap: 30px;
     }
+
 }
 
-/* CELULAR */
 
-@media (max-width: 700px) {
+/* CELULAR E TABLET - ATÉ 768PX */
+
+@media (max-width: 768px) {
+
+    /* HEADER RESPONSIVO */
+
     .cabecalho {
-        flex-direction: column;
-        padding: 15px;
-        gap: 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px 15px;
+        min-height: 65px;
     }
 
-    .menu {
-        gap: 15px;
+    /* ESCONDER MENU SUPERIOR */
+
+    .cabecalho .menu {
+        display: none;
     }
+
+    /* LOGO */
+
+    .cabecalho .logo {
+        width: 100px;
+        height: auto;
+    }
+
+    /* FOTO E BOTÃO DE SAIR */
+
+    .cabecalho .acoes {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .cabecalho .perfil {
+        width: 38px;
+        height: 38px;
+        object-fit: contain;
+    }
+
+    .cabecalho .botao-sair {
+        padding: 8px 12px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+
+    /* ESCONDER RODAPÉ TRADICIONAL */
+
+    footer:not(.menu-rodape) {
+        display: none;
+    }
+
+
+    /* MENU DE NAVEGAÇÃO INFERIOR */
+
+    .menu-rodape {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        height: 65px;
+        min-height: 65px;
+
+        padding: 0 8px;
+
+        background-color: white;
+        box-shadow: 0 -2px 5px #00000020;
+
+        z-index: 1000;
+    }
+
+    /* LINKS DO MENU INFERIOR */
+
+    .menu-rodape a {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        min-width: 0;
+        height: 100%;
+
+        gap: 3px;
+
+        color: #77717E;
+        text-decoration: none;
+        font-size: 10px;
+        font-weight: normal;
+    }
+
+    /* IMAGENS DOS ÍCONES */
+
+    .menu-rodape a img {
+        display: block;
+        width: 38px;
+        height: 34px;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    /* NOMES DOS ÍCONES */
+
+    .menu-rodape a span {
+        font-size: 10px;
+        font-weight: normal;
+        color: #77717E;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    /* BOTÃO CENTRAL DE INÍCIO */
+
+    .menu-rodape a.inicio {
+        flex: 1;
+        position: relative;
+        height: 100%;
+        background: transparent;
+        border-radius: 0;
+        z-index: 0;
+        isolation: isolate;
+    }
+
+    /* CÍRCULO ROXO */
+
+    .menu-rodape a.inicio::before {
+        content: "";
+        position: absolute;
+
+        width: 82px;
+        height: 82px;
+
+        background-color: #603B98;
+        border-radius: 50%;
+
+        bottom: 14px;
+        z-index: -1;
+    }
+
+    /* IMAGEM DA CASA */
+
+    .menu-rodape a.inicio img {
+        width: 52px;
+        height: 52px;
+
+        position: relative;
+        bottom: 22px;
+
+        object-fit: contain;
+    }
+
+
+    /* CONTEÚDO PRINCIPAL */
 
     main {
         width: 92%;
@@ -310,16 +485,102 @@ footer .direitos {
         gap: 35px;
     }
 
+    /* FOTO E DADOS DO PERFIL */
+
     .foto-perfil,
     .dados {
         width: 100%;
     }
 
-    .links-rodape {
-        gap: 20px;
+    .foto-perfil {
+        text-align: center;
     }
 
-    .links-rodape a {
-        font-size: 14px;
+    .avatar {
+        width: 90px;
+        height: 90px;
+        font-size: 45px;
+        margin-bottom: 20px;
     }
+
+    .informacao {
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    /* ESPAÇO PARA O MENU INFERIOR */
+
+    body {
+        padding-bottom: 85px;
+    }
+
+}
+
+
+/* CELULARES PEQUENOS - ATÉ 380PX */
+
+@media (max-width: 380px) {
+
+    /* HEADER */
+
+    .cabecalho {
+        padding: 10px;
+        gap: 6px;
+    }
+
+    .cabecalho .logo {
+        width: 85px;
+    }
+
+    .cabecalho .acoes {
+        gap: 6px;
+    }
+
+    .cabecalho .perfil {
+        width: 32px;
+        height: 32px;
+    }
+
+    .cabecalho .botao-sair {
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    /* CONTEÚDO */
+
+    main {
+        width: 94%;
+    }
+
+    main .perfil {
+        padding: 25px 15px;
+    }
+
+    /* MENU INFERIOR */
+
+    .menu-rodape {
+        padding: 0 3px;
+    }
+
+    .menu-rodape a img {
+        width: 32px;
+        height: 30px;
+    }
+
+    .menu-rodape a span {
+        font-size: 9px;
+    }
+
+    .menu-rodape a.inicio::before {
+        width: 72px;
+        height: 72px;
+        bottom: 17px;
+    }
+
+    .menu-rodape a.inicio img {
+        width: 45px;
+        height: 45px;
+        bottom: 18px;
+    }
+
 }

@@ -45,7 +45,9 @@
         <section class="perfil">
 
             <div class="foto-perfil">
-                <div class="avatar">●</div>
+                <a href="{{ url_for('perfil') }}">
+                    <img src="{{ url_for('static', filename='uploads/perfil.png') }}" alt="Perfil" class="perfil3">
+                </a>
                 <h3>Administrador</h3>
             </div>
 
@@ -101,6 +103,32 @@
         <p>Termos de uso | Política de privacidade</p>
 
     </footer>
+
+
+<!-- MENU DE NAVEGAÇÃO MOBILE -->
+        <nav class="menu-rodape">
+
+            <a href="/emprestimos">
+                <img src="/static/uploads/cartao.png" alt="Empréstimos">
+            </a>
+
+            <a href="/taxas">
+                <img src="/static/uploads/seta.png" alt="Taxas">
+            </a>
+
+            <a href="/admin" class="inicio">
+                <img src="/static/uploads/casa.png" alt="Início">
+            </a>
+
+            <a href="/exercicios">
+                <img src="/static/uploads/maleta.png" alt="Movimentação">
+            </a>
+
+            <a href="/perfil_adm">
+                <img src="/static/uploads/perfil2.png" alt="Perfil">
+            </a>
+
+        </nav>
 
 </body>
 

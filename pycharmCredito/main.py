@@ -13,7 +13,7 @@ app.config["SECRET_KEY"] = "Chavesdfglkjhgfdshjkjhgfdcvbmnb"
 # CONEXÃO COM O BANCO
 host = "localhost"
 # Encontra BANCO.FDB na pasta do projeto, mesmo ao mudar o ZIP de lugar.
-database = r"C:\Users\Aluno\Downloads\ARO_corrigido_com_administrador\ARO-16.10.26-main\BANCO.FDB"
+database = r"C:\Users\Aluno\Downloads\PROJETO-ARO-main\PROJETO-ARO-main\BANCO.FDB"
 user = "SYSDBA"
 password = "sysdba"
 

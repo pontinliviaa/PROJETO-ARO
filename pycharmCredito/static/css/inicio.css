@@ -1,26 +1,20 @@
 
-
 /* CONFIGURAÇÕES GERAIS */
 
 * {
-
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
-
 }
 
 body {
-
     font-family: Arial, sans-serif;
-
     background-color: #F7F7FA;
-
     color: #25232A;
-
 }
+
+
+/* CABEÇALHO */
 
 .cabecalho {
     width: 100%;
@@ -41,6 +35,7 @@ body {
     max-width: 100%;
     height: auto;
 }
+
 .perfil {
     width: 55px;
     max-width: 100%;
@@ -55,8 +50,7 @@ body {
     gap: 24px;
 }
 
-.menu a,
-.menu-rodape a {
+.menu a {
     color: #603b98;
     font-size: 16px;
     font-weight: 700;
@@ -64,8 +58,7 @@ body {
     transition: color 0.2s;
 }
 
-.menu a:hover,
-.menu-rodape a:hover {
+.menu a:hover {
     color: #8b61bd;
 }
 
@@ -86,158 +79,64 @@ body {
     cursor: pointer;
 }
 
+
 /* CONTEÚDO PRINCIPAL */
 
 main {
-
     width: 85%;
-
     max-width: 1100px;
-
     margin: 50px auto;
-
     min-height: 400px;
-
 }
 
 main h1 {
-
     color: #25232A;
-
     font-size: 30px;
-
     margin-bottom: 25px;
-
 }
+
 
 /* MENSAGENS */
 
 .mensagem {
-
     padding: 12px 15px;
-
     margin-bottom: 15px;
-
     border-radius: 6px;
-
     font-size: 14px;
-
 }
 
 .mensagem.success {
-
     background-color: #D8F3E3;
-
     color: #267447;
-
 }
 
 .mensagem.error {
-
     background-color: #F8D7DA;
-
     color: #A52A35;
-
 }
+
+
+/* BOTÕES */
+
 .botao {
-   display: block;
-   background-color: #29245f;
-   color: white;
-   text-decoration: none;
-   text-align: center;
-   padding: 13px;
-   border-radius: 8px;
-   transition: 0.3s;
-   margin-top: 30px;
+    display: block;
+    background-color: #29245f;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 13px;
+    border-radius: 8px;
+    transition: 0.3s;
+    margin-top: 30px;
 }
+
 .botao:hover {
-   background-color: #423b85;
-}
-
-/* TABLET */
-
-@media (max-width: 1000px) {
-
-    .cabecalho {
-
-        flex-wrap: wrap;
-
-        justify-content: center;
-
-        padding: 20px;
-
-    }
-
-    .menu {
-
-        gap: 15px;
-
-    }
-
-    .menu a {
-
-        font-size: 13px;
-
-    }
-
-}
-
-/* CELULAR */
-
-@media (max-width: 600px) {
-
-    .cabecalho {
-
-        flex-direction: column;
-
-        gap: 20px;
-
-    }
-
-    .logo {
-
-        width: 100px;
-
-    }
-
-    .menu {
-
-        flex-wrap: wrap;
-
-        gap: 15px;
-
-    }
-
-    .menu a {
-
-        font-size: 12px;
-
-    }
-
-    main {
-
-        width: 92%;
-
-        margin: 35px auto;
-
-    }
-
-    main h1 {
-
-        font-size: 24px;
-
-    }
-
-    .botao-sair {
-
-        padding: 10px 30px;
-
-    }
-
+    background-color: #423b85;
 }
 
 
 /* BOTÃO DA PÁGINA DO ADMINISTRADOR */
+
 .botao-taxas {
     display: inline-block;
     padding: 12px 20px;
@@ -251,4 +150,270 @@ main h1 {
 
 .botao-taxas:hover {
     background-color: #8b61bd;
+}
+
+
+/* MENU DO RODAPÉ - ESCONDIDO NO COMPUTADOR */
+
+.menu-rodape {
+    display: none;
+}
+
+
+/* TABLET - ATÉ 1000PX */
+
+@media (max-width: 1000px) {
+
+    .cabecalho {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .menu {
+        gap: 15px;
+    }
+
+    .menu a {
+        font-size: 13px;
+    }
+
+}
+
+
+/* CELULAR E TABLET - ATÉ 768PX */
+
+@media (max-width: 768px) {
+
+    /* HEADER RESPONSIVO */
+
+    .cabecalho {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px 15px;
+        min-height: 65px;
+    }
+
+    /* ESCONDER APENAS O MENU SUPERIOR */
+
+    .cabecalho .menu {
+        display: none;
+    }
+
+    /* LOGO DO HEADER */
+
+    .cabecalho .logo {
+        width: 100px;
+        height: auto;
+    }
+
+    /* FOTO DE PERFIL E BOTÃO SAIR */
+
+    .cabecalho .acoes {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+    }
+
+    .cabecalho .perfil {
+        width: 38px;
+        height: 38px;
+        margin-top: 0;
+        object-fit: contain;
+    }
+
+    .cabecalho .botao-sair {
+        padding: 8px 12px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+
+    /* MENU DE NAVEGAÇÃO INFERIOR */
+
+    .menu-rodape {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        height: 65px;
+
+        padding: 0 8px;
+
+        background-color: #ffffff;
+        box-shadow: 0 -2px 5px #00000020;
+
+        z-index: 1000;
+    }
+
+    /* LINKS DO RODAPÉ */
+
+    .menu-rodape a {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        min-width: 0;
+        height: 100%;
+
+        gap: 3px;
+
+        color: #77717e;
+        text-decoration: none;
+        font-size: 10px;
+        font-weight: normal;
+    }
+
+    .menu-rodape a:hover {
+        color: #603b98;
+    }
+
+    /* IMAGENS DOS ÍCONES */
+
+    .menu-rodape a img {
+        display: block;
+        width: 38px;
+        height: 34px;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    /* NOMES ABAIXO DAS IMAGENS */
+
+    .menu-rodape a span {
+        font-size: 10px;
+        font-weight: normal;
+        color: #77717e;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    /* BOTÃO CENTRAL DE INÍCIO */
+
+    .menu-rodape a.inicio {
+        flex: 1;
+        position: relative;
+        height: 100%;
+        background: transparent;
+        border-radius: 0;
+        z-index: 0;
+        isolation: isolate;
+    }
+
+    /* CÍRCULO ROXO ATRÁS DA CASA */
+
+    .menu-rodape a.inicio::before {
+        content: "";
+        position: absolute;
+
+        width: 82px;
+        height: 82px;
+
+        background-color: #603b98;
+        border-radius: 50%;
+
+        bottom: 14px;
+        z-index: -1;
+    }
+
+    /* IMAGEM DA CASA */
+
+    .menu-rodape a.inicio img {
+        width: 52px;
+        height: 52px;
+
+        position: relative;
+        bottom: 22px;
+
+        object-fit: contain;
+    }
+
+    /* CONTEÚDO PRINCIPAL */
+
+    main {
+        width: 92%;
+        margin: 35px auto;
+    }
+
+    main h1 {
+        font-size: 24px;
+    }
+
+    /* ESPAÇO PARA O RODAPÉ NÃO COBRIR O CONTEÚDO */
+
+    body {
+        padding-bottom: 85px;
+    }
+
+}
+
+
+/* CELULARES PEQUENOS - ATÉ 380PX */
+
+@media (max-width: 380px) {
+
+    /* HEADER */
+
+    .cabecalho {
+        padding: 10px;
+        gap: 6px;
+    }
+
+    .cabecalho .logo {
+        width: 85px;
+    }
+
+    .cabecalho .acoes {
+        gap: 6px;
+    }
+
+    .cabecalho .perfil {
+        width: 32px;
+        height: 32px;
+    }
+
+    .cabecalho .botao-sair {
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    /* RODAPÉ */
+
+    .menu-rodape {
+        padding: 0 3px;
+    }
+
+    .menu-rodape a img {
+        width: 32px;
+        height: 30px;
+    }
+
+    .menu-rodape a span {
+        font-size: 9px;
+    }
+
+    .menu-rodape a.inicio::before {
+        width: 72px;
+        height: 72px;
+        bottom: 17px;
+    }
+
+    .menu-rodape a.inicio img {
+        width: 45px;
+        height: 45px;
+        bottom: 18px;
+    }
+
 }
