@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, flash, redirect, url_for, session, Exception
+from flask import Flask, render_template, request, flash, redirect, url_for, session
 from datetime import date
 from decimal import Decimal, InvalidOperation
 from flask_bcrypt import Bcrypt
@@ -405,7 +405,7 @@ def salvar_edicao():
     confirmar_senha = request.form.get("confirmar_senha", "")
 
     # Estes campos já existem na tela de edição e na tabela USUARIO.
-   
+
     try:
         renda_mensal = Decimal(request.form.get("renda_mensal", "0").replace(",", "."))
         despesas_mensal = Decimal(request.form.get("despesas_mensal", "0").replace(",", "."))
@@ -617,6 +617,27 @@ def receitas(id_registro=None):
             data_movimento = date.fromisoformat(
                 request.form.get("data", "")
             )
+            if id_registro is None:
+                cursor.execute("""
+                    SELECT ID_REGISTRO
+                    FROM ARO_RECEITA
+                    WHERE ID_USUARIO = ?
+                      AND UPPER(TRIM(DESCRICAO)) = UPPER(TRIM(?))
+                """, (id_usuario, descricao))
+            else:
+                cursor.execute("""
+                    SELECT ID_REGISTRO
+                    FROM ARO_RECEITA
+                    WHERE ID_USUARIO = ?
+                      AND UPPER(TRIM(DESCRICAO)) = UPPER(TRIM(?))
+                      AND ID_REGISTRO <> ?
+                """, (id_usuario, descricao, id_registro))
+
+            existente = cursor.fetchone()
+
+            if existente:
+                flash("Já existe uma receita com esse nome.", "error")
+                return redirect(url_for("receitas"))
 
             if descricao == "" or len(descricao) > 100:
                 flash("Informe uma descrição de até 100 caracteres.", "error")
@@ -778,6 +799,30 @@ def despesas(id_registro=None):
                 flash("Escolha a classificação Fixa ou Variável.", "error")
                 return redirect(url_for("despesas"))
 
+            if classificacao == "Fixa":
+                if id_registro is None:
+                    cursor.execute("""
+                        SELECT ID_REGISTRO
+                        FROM ARO_DESPESA
+                        WHERE ID_USUARIO = ?
+                          AND UPPER(TRIM(DESCRICAO)) = UPPER(TRIM(?))
+                          AND CLASSIFICACAO = 'Fixa'
+                    """, (id_usuario, descricao))
+                else:
+                    cursor.execute("""
+                        SELECT ID_REGISTRO
+                        FROM ARO_DESPESA
+                        WHERE ID_USUARIO = ?
+                          AND UPPER(TRIM(DESCRICAO)) = UPPER(TRIM(?))
+                          AND CLASSIFICACAO = 'Fixa'
+                          AND ID_REGISTRO <> ?
+                    """, (id_usuario, descricao, id_registro))
+
+                existente = cursor.fetchone()
+
+                if existente:
+                    flash("Já existe uma despesa fixa com esse nome.", "error")
+                    return redirect(url_for("despesas"))
             if registro is None:
                 cursor.execute("""
                     INSERT INTO ARO_DESPESA
