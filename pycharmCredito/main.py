@@ -3,7 +3,6 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from datetime import date
 from decimal import Decimal, InvalidOperation
 from flask_bcrypt import Bcrypt
-import os
 import fdb
 
 # CONFIGURAÇÃO DO FLASK
@@ -13,7 +12,7 @@ app.config["SECRET_KEY"] = "Chavesdfglkjhgfdshjkjhgfdcvbmnb"
 # CONEXÃO COM O BANCO
 host = "localhost"
 # Encontra BANCO.FDB na pasta do projeto, mesmo ao mudar o ZIP de lugar.
-database = r"C:\Users\Aluno\Downloads\PROJETO-ARO-main\PROJETO-ARO-main\BANCO.FDB"
+database = r"C:\Users\Aluno\Downloads\PROJETO-ARO-main (1)\PROJETO-ARO-main\BANCO.FDB"
 user = "SYSDBA"
 password = "sysdba"
 
@@ -31,7 +30,6 @@ TIPO_ADM = 1
 TIPO_COMUM = 7
 
 # VERIFICAÇÃO DE SENHA FORTE
-
 def senha_forte(senha):
     if len(senha) < 8:
         return False

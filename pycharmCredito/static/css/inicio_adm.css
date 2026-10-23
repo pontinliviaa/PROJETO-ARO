@@ -43,6 +43,23 @@ body {
     height: auto;
 }
 
+.mensagem {
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.mensagem.success {
+    background-color: #D8F3E3;
+    color: #267447;
+}
+
+.mensagem.error {
+    background-color: #F8D7DA;
+    color: #A52A35;
+}
+
 
 /* MENU SUPERIOR */
 
@@ -89,7 +106,7 @@ body {
 .cabecalho-aro .perfil,
 .acoes-aro img {
     display: block;
-    width: 28px;
+    width: 50px;
     max-width: 100%;
     height: auto;
     margin: 0;
@@ -110,7 +127,9 @@ body {
     padding: 6px;
     border: none;
     background: none;
-    color: #171717;
+    color: white;
+    background-color: #29245f;
+    border-radius: 5px;
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;

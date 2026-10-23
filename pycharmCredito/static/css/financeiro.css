@@ -100,7 +100,7 @@ body {
 .cabecalho-aro .perfil,
 .acoes-aro img {
     display: block;
-    width: 28px;
+    width: 50px;
     max-width: 100%;
     height: auto;
     margin: 0;
@@ -121,7 +121,9 @@ body {
     padding: 6px;
     border: none;
     background: none;
-    color: #171717;
+    color: white;
+    background-color: #29245f;
+    border-radius: 5px;
     font-family: Arial, sans-serif;
     font-size: 15px;
     font-weight: bold;
