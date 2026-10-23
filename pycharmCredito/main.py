@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, flash, redirect, url_for, session
+from flask import Flask, render_template, request, flash, redirect, url_for, session, Exception
 from datetime import date
 from decimal import Decimal, InvalidOperation
 from flask_bcrypt import Bcrypt
@@ -405,7 +405,7 @@ def salvar_edicao():
     confirmar_senha = request.form.get("confirmar_senha", "")
 
     # Estes campos já existem na tela de edição e na tabela USUARIO.
-    # São informações do perfil, separadas dos lançamentos da sprint.
+   
     try:
         renda_mensal = Decimal(request.form.get("renda_mensal", "0").replace(",", "."))
         despesas_mensal = Decimal(request.form.get("despesas_mensal", "0").replace(",", "."))
