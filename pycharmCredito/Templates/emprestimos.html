@@ -2,10 +2,46 @@
 {% set titulo = "Empréstimos" %}
 {% block conteudo %}
 <h1>Empréstimos realizados</h1>
-<div class="acoes"><a class="botao" href="{{ url_for('simular_emprestimo') }}">Novo empréstimo</a><a class="botao secundario" href="{{ url_for('relatorio_emprestimos') }}">Baixar relatório PDF</a></div>
-<section class="cartao"><div class="tabela"><table>
-<thead><tr><th>Número</th><th>Data</th><th>Valor recebido</th><th>Taxa mensal</th><th>Parcelas</th><th>Parcela</th><th>Última parcela</th><th>Total</th><th>Risco</th></tr></thead>
-<tbody>{% for item in registros %}<tr><td>{{ item[0] }}</td><td>{{ item[7] }}</td><td>R$ {{ item[1] }}</td><td>{{ item[2] }}%</td><td>{{ item[3] }}</td><td>R$ {{ item[5] }}</td><td>R$ {{ item[6] }}</td><td>R$ {{ item[4] }}</td><td>{{ item[8] }}</td></tr>
-{% else %}<tr><td colspan="9">Nenhum empréstimo confirmado.</td></tr>{% endfor %}</tbody>
-</table></div></section>
+<div class="acoes">
+    <a class="botao" href="{{ url_for('simular_emprestimo') }}">Novo empréstimo</a>
+    <a class="botao secundario" href="{{ url_for('relatorio_emprestimos') }}">Baixar relatório PDF</a>
+</div>
+<section class="cartao">
+    <div class="tabela">
+        <table class="tabela-cards">
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Data</th>
+                    <th>Valor recebido</th>
+                    <th>Taxa mensal</th>
+                    <th>Parcelas</th>
+                    <th>Parcela</th>
+                    <th>Última parcela</th>
+                    <th>Total</th>
+                    <th>Risco</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in registros %}
+                <tr>
+                    <td data-label="Número">{{ item[0] }}</td>
+                    <td data-label="Data">{{ item[7] }}</td>
+                    <td data-label="Valor recebido">R$ {{ item[1] }}</td>
+                    <td data-label="Taxa mensal">{{ item[2] }}%</td>
+                    <td data-label="Parcelas">{{ item[3] }}</td>
+                    <td data-label="Parcela">R$ {{ item[5] }}</td>
+                    <td data-label="Última parcela">R$ {{ item[6] }}</td>
+                    <td data-label="Total">R$ {{ item[4] }}</td>
+                    <td data-label="Risco">{{ item[8] }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="9">Nenhum empréstimo confirmado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
 {% endblock %}

@@ -1,6 +1,6 @@
 /* CONFIGURAÇÕES GERAIS */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Arial, sans-serif; background: #f6f3f2; color: #25232a; line-height: 1.6; }
+body { font-family: Arial, sans-serif; background: #f6f3f2; color: #25232a; line-height: 1.6; overflow-wrap: anywhere; }
 a { color: #603b98; text-decoration: none; }
 img { max-width: 100%; }
 main { width: 92%; max-width: 1180px; margin: 36px auto 60px; min-height: 65vh; }
@@ -63,6 +63,7 @@ td .acoes { flex-wrap: nowrap; margin: 0; }
 .foto-usuario { display: block; width: 140px; height: 140px; object-fit: cover; border-radius: 50%; margin: 0 auto 24px; }
 dt { color: #726a7c; font-size: 14px; }
 dd { margin: 0 0 16px; font-size: 19px; font-weight: bold; }
+.perfil-cartao > div { min-width: 0; }
 footer { padding: 24px; background: #f0e2ff; text-align: center; }
 /* TABLET */
 @media (max-width: 960px) {
@@ -91,4 +92,103 @@ footer { padding: 24px; background: #f0e2ff; text-align: center; }
 @media (max-width: 600px) {
     .saldo-cabecalho { flex-direction: column; align-items: flex-start; gap: 0; }
     .resumo h2 { font-size: 27px; }
+}
+
+/* TABELAS EM CARDS NO CELULAR */
+@media (max-width: 768px) {
+    .tabela,
+    .tabela-rolagem {
+        overflow-x: visible;
+    }
+
+    .tabela-cards,
+    .tabela-cards tbody,
+    .tabela-cards tr,
+    .tabela-cards td {
+        display: block;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .tabela-cards thead {
+        display: none;
+    }
+
+    .tabela-cards tr {
+        background-color: white;
+        border: 1px solid #e4deea;
+        border-radius: 12px;
+        padding: 4px 16px;
+        margin-bottom: 16px;
+    }
+
+    .tabela-cards tr:last-child {
+        margin-bottom: 0;
+    }
+
+    .tabela-cards td {
+        padding: 12px 0;
+        text-align: left;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .tabela-cards td::before {
+        content: attr(data-label);
+        display: block;
+        color: #603b98;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+
+    .tabela-cards td:last-child {
+        border-bottom: none;
+    }
+
+    .tabela-cards td[colspan]::before {
+        display: none;
+    }
+
+    .tabela-cards .acoes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 8px 0 0;
+    }
+
+    .tabela-cards .acoes a,
+    .tabela-cards .acoes form {
+        width: 100%;
+    }
+
+    .tabela-cards .acoes a {
+        display: block;
+        padding: 10px 14px;
+        border-radius: 8px;
+        background-color: #eee5fa;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .tabela-cards .acoes button {
+        width: 100%;
+        margin: 0;
+    }
+
+    .filtros > div {
+        min-width: 0;
+        width: 100%;
+        flex: auto;
+    }
+
+    .acoes > .botao {
+        width: 100%;
+    }
+
+    input,
+    select,
+    button {
+        font-size: 16px;
+    }
 }

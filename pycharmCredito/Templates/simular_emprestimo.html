@@ -5,6 +5,7 @@
 <div class="duas-colunas">
 <section class="cartao">
     <h2>Quanto você precisa?</h2>
+    <p>Consulte as faixas abaixo antes de escolher a quantidade. Vale a primeira faixa que cobre o valor solicitado.</p>
     <form method="POST" action="{{ url_for('simular_emprestimo') }}">
         <label for="valor">Valor do empréstimo (R$)</label>
         <input id="valor" name="valor" type="number" min="0.01" max="1000000" step="0.01" required value="{{ simulacao['valor'] if simulacao else '' }}">
@@ -20,6 +21,7 @@
     {% if simulacao %}
     <dl>
         <dt>Taxa mensal mais recente</dt><dd>{{ simulacao['percentual'] }}%</dd>
+        <dt>Limite de parcelas para esse valor</dt><dd>{{ simulacao['maximo_parcelas'] }}</dd>
         <dt>Juros totais</dt><dd>R$ {{ simulacao['juros'] }}</dd>
         <dt>Total a devolver</dt><dd>R$ {{ simulacao['total'] }}</dd>
         <dt>Parcelas</dt><dd>{{ simulacao['quantidade'] }} de R$ {{ simulacao['parcela'] }}</dd>
@@ -34,4 +36,23 @@
     {% else %}<p>Preencha os dados e clique em simular.</p>{% endif %}
 </section>
 </div>
+<section class="cartao">
+    <h2>Limites de parcelas definidos pelo administrador</h2>
+    <p>Valores acima da última faixa precisam de um novo limite cadastrado pelo administrador.</p>
+    <div class="tabela">
+        <table class="tabela-cards">
+            <thead><tr><th>Empréstimos de até</th><th>Máximo de parcelas</th></tr></thead>
+            <tbody>
+                {% for limite in limites %}
+                <tr>
+                    <td data-label="Empréstimos de até">R$ {{ limite[0] }}</td>
+                    <td data-label="Máximo de parcelas">{{ limite[1] }}</td>
+                </tr>
+                {% else %}
+                <tr><td colspan="2">O administrador ainda precisa cadastrar os limites para permitir simulações.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
 {% endblock %}

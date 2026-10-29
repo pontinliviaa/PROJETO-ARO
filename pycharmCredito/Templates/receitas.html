@@ -37,14 +37,16 @@
 <section>
     <h2>Lançamentos até hoje</h2>
     <p>Somente os lançamentos com data até hoje entram no saldo atual. Editar ou excluir afeta apenas a linha selecionada.</p>
-    <div class="tabela"><table>
+    <div class="tabela"><table class="tabela-cards">
         <thead><tr><th>Descrição</th><th>Valor</th><th>Data</th><th>Classificação</th><th>Ações</th></tr></thead>
         <tbody>
         {% for item in registros %}
         <tr>
-            <td>{{ item[1] }}</td><td>R$ {{ item[2] }}</td><td>{{ item[3] }}</td>
-            <td>{{ 'Variável' if item[4] == 'Variavel' else 'Recorrente' }}</td>
-            <td><div class="acoes">
+            <td data-label="Descrição">{{ item[1] }}</td>
+            <td data-label="Valor">R$ {{ item[2] }}</td>
+            <td data-label="Data">{{ item[3] }}</td>
+            <td data-label="Classificação">{{ 'Variável' if item[4] == 'Variavel' else 'Recorrente' }}</td>
+            <td data-label="Ações"><div class="acoes">
                 <a href="{{ url_for('receitas', id_registro=item[0]) }}">Editar</a>
                 <form method="POST" action="{{ url_for('excluir_receita', id_registro=item[0]) }}"><button type="submit" class="excluir">Excluir</button></form>
             </div></td>
@@ -56,14 +58,16 @@
 <section>
     <h2>Próximos lançamentos agendados</h2>
     <p>Estes valores ainda não entram no saldo atual. Cada lançamento passa a contar automaticamente na sua data, ao abrir a página.</p>
-    <div class="tabela"><table>
+    <div class="tabela"><table class="tabela-cards">
         <thead><tr><th>Descrição</th><th>Valor previsto</th><th>Data prevista</th><th>Classificação</th><th>Ações</th></tr></thead>
         <tbody>
         {% for item in agendados %}
         <tr>
-            <td>{{ item[1] }}</td><td>R$ {{ item[2] }}</td><td>{{ item[3] }}</td>
-            <td>{{ 'Variável' if item[4] == 'Variavel' else 'Recorrente' }}</td>
-            <td><div class="acoes">
+            <td data-label="Descrição">{{ item[1] }}</td>
+            <td data-label="Valor previsto">R$ {{ item[2] }}</td>
+            <td data-label="Data prevista">{{ item[3] }}</td>
+            <td data-label="Classificação">{{ 'Variável' if item[4] == 'Variavel' else 'Recorrente' }}</td>
+            <td data-label="Ações"><div class="acoes">
                 <a href="{{ url_for('receitas', id_registro=item[0]) }}">Editar</a>
                 <form method="POST" action="{{ url_for('excluir_receita', id_registro=item[0]) }}"><button type="submit" class="excluir">Excluir</button></form>
             </div></td>
