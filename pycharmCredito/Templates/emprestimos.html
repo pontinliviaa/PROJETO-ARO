@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "base_financeiro.html" %}
+{% set titulo = "Empréstimos" %}
+{% block conteudo %}
+<h1>Empréstimos realizados</h1>
+<div class="acoes"><a class="botao" href="{{ url_for('simular_emprestimo') }}">Novo empréstimo</a><a class="botao secundario" href="{{ url_for('relatorio_emprestimos') }}">Baixar relatório PDF</a></div>
+<section class="cartao"><div class="tabela"><table>
+<thead><tr><th>Número</th><th>Data</th><th>Valor recebido</th><th>Taxa mensal</th><th>Parcelas</th><th>Parcela</th><th>Última parcela</th><th>Total</th><th>Risco</th></tr></thead>
+<tbody>{% for item in registros %}<tr><td>{{ item[0] }}</td><td>{{ item[7] }}</td><td>R$ {{ item[1] }}</td><td>{{ item[2] }}%</td><td>{{ item[3] }}</td><td>R$ {{ item[5] }}</td><td>R$ {{ item[6] }}</td><td>R$ {{ item[4] }}</td><td>{{ item[8] }}</td></tr>
+{% else %}<tr><td colspan="9">Nenhum empréstimo confirmado.</td></tr>{% endfor %}</tbody>
+</table></div></section>
+{% endblock %}

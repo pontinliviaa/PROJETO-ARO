@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "base_financeiro.html" %}
+{% set titulo = "Extrato" %}
+{% block conteudo %}
+<h1>Extrato de lançamentos</h1>
+<p>Entradas e saídas cadastradas, inclusive parcelas previstas. O saldo anterior considera os lançamentos anteriores ao período.</p>
+<section class="cartao"><form method="GET" action="{{ url_for('extrato') }}" class="filtros">
+<div><label for="inicio">Data inicial</label><input type="date" name="inicio" id="inicio" value="{{ inicio }}" required></div>
+<div><label for="fim">Data final</label><input type="date" name="fim" id="fim" value="{{ fim }}" required></div>
+<button type="submit">Filtrar</button>
+</form>
+<a class="botao secundario" href="{{ url_for('relatorio_extrato', inicio=inicio, fim=fim) }}">Baixar este extrato em PDF</a></section>
+<p>Saldo anterior: <strong>R$ {{ anterior }}</strong></p>
+<section class="cartao"><div class="tabela"><table>
+<thead><tr><th>Data</th><th>Descrição</th><th>Entrada</th><th>Saída</th><th>Saldo</th></tr></thead>
+<tbody>{% for item in movimentos %}<tr><td>{{ item[0] }}</td><td>{{ item[1] }}</td><td>R$ {{ item[2] }}</td><td>R$ {{ item[3] }}</td><td>R$ {{ item[4] }}</td></tr>
+{% else %}<tr><td colspan="5">Nenhum lançamento neste período.</td></tr>{% endfor %}</tbody>
+</table></div></section><h2>Saldo final: R$ {{ saldo }}</h2>
+{% endblock %}

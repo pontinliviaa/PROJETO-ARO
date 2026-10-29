@@ -1,54 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% extends "base_financeiro.html" %}
+{% set titulo = "Taxas" %}
+{% block conteudo %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taxa de juros - ARO</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/financeiro.css') }}">
-</head>
-
-<body>
-    <div class="pagina">
-
-        <header class="cabecalho-aro">
-        <a href="{{ url_for('novo') }}" class="marca-aro">
-            <img
-                src="{{ url_for('static', filename='uploads/logo-horizontal.png') }}"
-                alt="Logo ARO"
-                class="logo-aro">
-        </a>
-
-        <nav class="menu-aro">
-            <a href="{{ url_for('novo') }}">Início</a>
-            <a href="{{ url_for('pagina_taxas') }}">Taxas</a>
-            <a href="#">Exercícios</a>
-            <a href="#">Empreendedores</a>
-        </nav>
-
-        <div class="acoes-aro">
-            <a href="{{ url_for('perfil_adm') }}">
-                <img src="{{ url_for('static', filename='uploads/perfil.png') }}" alt="Perfil" class="perfil">
-            </a>
-
-            <form action="{{ url_for('logout') }}" method="POST">
-                <button type="submit" class="sair-aro">Sair</button>
-            </form>
-        </div>
-    </header>
-
-        <main class="conteudo">
             <h1>Taxa de juros</h1>
             <p class="subtitulo">Gerencie as taxas mensais por data de referência.</p>
 
-            {% with mensagens = get_flashed_messages(with_categories=true) %}
-
-            {% for categoria, mensagem in mensagens %}
-            <p class="mensagem {{ categoria }}">{{ mensagem }}</p>
-
-            {% endfor %}
-
-            {% endwith %}
+            
 
             <div class="taxas-layout">
 
@@ -151,47 +108,5 @@
                 </section>
 
             </div>
-        </main>
-
-        <footer class="rodape">
-            <nav>
-                <a href="{{ url_for('novo') }}">Início</a>
-                <a href="{{ url_for('receitas') }}">Receitas</a>
-                <a href="{{ url_for('despesas') }}">Despesas</a>
-                <a href="{{ url_for('saldos_mensais') }}">Saldo mensal</a>
-                <a href="{{ url_for('pagina_taxas') }}">Taxas</a>
-            </nav>
-
-            <p>Termos de uso | Política de privacidade</p>
-            <p class="direitos">© 2026 ARO. Todos os direitos reservados.</p>
-        </footer>
-
-    </div>
-
-<!-- MENU DE NAVEGAÇÃO MOBILE -->
-        <nav class="menu-rodape">
-
-            <a href="/emprestimos">
-                <img src="/static/uploads/cartao.png" alt="Empréstimos">
-            </a>
-
-            <a href="/taxas">
-                <img src="/static/uploads/seta.png" alt="Taxas">
-            </a>
-
-            <a href="/admin" class="inicio">
-                <img src="/static/uploads/casa.png" alt="Início">
-            </a>
-
-            <a href="/exercicios">
-                <img src="/static/uploads/maleta.png" alt="Movimentação">
-            </a>
-
-            <a href="/perfil_adm">
-                <img src="/static/uploads/perfil2.png" alt="Perfil">
-            </a>
-
-        </nav>
-</body>
-
-</html>
+        
+{% endblock %}

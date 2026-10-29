@@ -1,0 +1,94 @@
+/* CONFIGURAÇÕES GERAIS */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background: #f6f3f2; color: #25232a; line-height: 1.6; }
+a { color: #603b98; text-decoration: none; }
+img { max-width: 100%; }
+main { width: 92%; max-width: 1180px; margin: 36px auto 60px; min-height: 65vh; }
+h1 { font-size: 30px; margin-bottom: 12px; }
+h2 { font-size: 21px; margin-bottom: 12px; }
+p { margin-bottom: 16px; overflow-wrap: anywhere; }
+.subtitulo { color: #603b98; font-size: 12px; font-weight: bold; letter-spacing: 2px; }
+/* CABEÇALHO */
+.cabecalho { background: white; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px 4%; border-bottom: 1px solid #e2dce8; }
+.logo { width: 115px; display: block; }
+.menu, .acoes-conta, .acoes { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.menu a { font-weight: bold; font-size: 14px; }
+.acoes-conta form { margin: 0; }
+.acoes-conta button { margin: 0; padding: 9px 17px; }
+/* CARTÕES E FORMULÁRIOS */
+section, .cartao, .card { background: white; padding: 26px; border: 1px solid #e4deea; border-radius: 14px; margin-bottom: 24px; min-width: 0; }
+.atalhos, .resumo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 28px; }
+.atalhos .cartao { color: #25232a; }
+.atalhos .cartao h2 { color: #603b98; }
+.duas-colunas, .taxas-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+label { display: block; font-weight: bold; font-size: 14px; margin-bottom: 7px; }
+input, select { display: block; width: 100%; max-width: 100%; border: 1px solid #b9afc5; background: white; border-radius: 7px; padding: 13px; font: inherit; margin-bottom: 20px; min-width: 0; }
+input:focus, select:focus { outline: 2px solid #bfa2e5; outline-offset: 2px; }
+button, .botao { display: inline-block; background: #603b98; color: white; padding: 12px 22px; border: 0; border-radius: 8px; font: inherit; font-weight: bold; cursor: pointer; text-align: center; margin-bottom: 14px; }
+button:hover, .botao:hover { background: #482872; }
+.secundario { background: #eee5fa; color: #603b98; }
+.secundario:hover { color: white; }
+.excluir { background: #9c344b; padding: 8px 14px; }
+.acoes { margin-bottom: 16px; }
+.campo { margin-bottom: 8px; }
+.filtros { display: flex; align-items: flex-end; gap: 18px; flex-wrap: wrap; }
+.filtros > div { flex: 1; min-width: 180px; }
+.filtros button { margin-bottom: 20px; }
+.mensagem { padding: 14px; border-radius: 8px; }
+.error { background: #fbe4e8; color: #83273a; }
+.success { background: #e0f2e7; color: #205e3a; }
+/* TABELAS */
+.tabela, .tabela-rolagem { width: 100%; overflow-x: auto; }
+table { width: 100%; min-width: 540px; border-collapse: collapse; font-size: 14px; }
+th, td { padding: 14px 12px; text-align: left; border-bottom: 1px solid #e7e1ee; }
+th { background: #f2ebfa; color: #603b98; white-space: nowrap; }
+td { overflow-wrap: anywhere; }
+td form, td button { margin: 0; }
+td .acoes { flex-wrap: nowrap; margin: 0; }
+/* RESUMO DO SALDO */
+.saldo-cabecalho { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.resumo .receita { border-top: 4px solid #29866b; }
+.resumo .despesa { border-top: 4px solid #b45070; }
+.resumo h2 { font-size: 29px; overflow-wrap: anywhere; margin: 16px 0; }
+.resumo .rotulo-saldo { font-size: 12px; font-weight: bold; letter-spacing: 1px; }
+.resumo .saldo-destaque { background: #603b98; color: white; border-color: #603b98; }
+.saldo-destaque strong { font-size: 13px; font-weight: normal; }
+.aviso-saldo { background: #eee7f6; border-radius: 12px; padding: 20px 24px; margin: 0 0 32px; }
+.aviso-saldo p { margin: 6px 0 0; font-size: 14px; color: #5e5569; }
+.numero-acao { display: inline-block; color: #603b98; background: #f0e7fb; border-radius: 8px; padding: 6px 12px; margin-bottom: 18px; font-weight: bold; }
+.acao-saldo .botao { margin-bottom: 0; }
+/* PERFIL E RODAPÉ */
+.perfil-cartao { display: flex; gap: 48px; align-items: center; }
+.foto-perfil { width: 42%; }
+.foto-usuario { display: block; width: 140px; height: 140px; object-fit: cover; border-radius: 50%; margin: 0 auto 24px; }
+dt { color: #726a7c; font-size: 14px; }
+dd { margin: 0 0 16px; font-size: 19px; font-weight: bold; }
+footer { padding: 24px; background: #f0e2ff; text-align: center; }
+/* TABLET */
+@media (max-width: 960px) {
+    .cabecalho { flex-wrap: wrap; }
+    .menu { order: 3; width: 100%; justify-content: center; }
+    .atalhos, .resumo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .duas-colunas, .taxas-layout { grid-template-columns: 1fr; }
+}
+/* CELULAR */
+@media (max-width: 600px) {
+    main { margin-top: 24px; }
+    h1 { font-size: 25px; }
+    .cabecalho { padding: 14px 4%; gap: 14px; }
+    .logo { width: 95px; }
+    .menu { gap: 12px; }
+    .menu a { font-size: 13px; }
+    .acoes-conta { gap: 12px; }
+    .atalhos, .resumo { grid-template-columns: 1fr; gap: 0; }
+    section, .cartao, .card { padding: 20px 16px; }
+    .perfil-cartao { flex-direction: column; align-items: stretch; gap: 22px; }
+    .foto-perfil { width: 100%; }
+    .acoes { gap: 12px; }
+    th, td { padding: 12px 9px; }
+}
+
+@media (max-width: 600px) {
+    .saldo-cabecalho { flex-direction: column; align-items: flex-start; gap: 0; }
+    .resumo h2 { font-size: 27px; }
+}

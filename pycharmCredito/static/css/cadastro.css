@@ -318,3 +318,14 @@ footer {
     border-radius: 8px;
     margin-bottom: 10px;
 }
+
+/* AJUSTES PARA CELULAR */
+@media (max-width: 768px) {
+    body { overflow-wrap: anywhere; }
+    .pagina-login, .pagina-cadastro { display: flex; flex-direction: column; width: 100%; min-height: 100vh; padding: 24px 16px; gap: 24px; }
+    .area-logo { display: flex; justify-content: center; align-items: center; width: 100%; margin: 0; padding: 16px 0; }
+    .area-logo .logo-aro { display: block; position: static; transform: none; width: 180px; max-width: 75%; height: auto; margin: 0 auto; }
+    .area-login, .area-cadastro { width: 100%; padding: 0; margin: 0; }
+    .card-login, .card-cadastro { width: 100%; max-width: 480px; margin: 0 auto; padding: 24px 18px; }
+    input, button { max-width: 100%; }
+}

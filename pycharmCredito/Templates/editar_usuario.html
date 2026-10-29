@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Editar Perfil - ARO</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/editar_usuario.css') }}">
-    </head>
-    <body>
-        <main class="container">
+{% extends "base_financeiro.html" %}
+{% set titulo = "Editar perfil" %}
+{% block conteudo %}
+
             <section class="card">
                 <h1>Editar Perfil</h1>
                 <p>Atualize suas informações pessoais e financeiras.</p>
-                {% with mensagens = get_flashed_messages(with_categories=true) %}
-                    {% if mensagens %}
-                        <div class="mensagens">
-                            {% for categoria, mensagem in mensagens %}
-                                <p class="{{ categoria }}">{{ mensagem }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endwith %}
+                
                 <form action="{{ url_for('salvar_edicao') }}" method="POST">
                     <div class="campo">
                         <label for="nome">Nome completo</label>
@@ -49,6 +35,5 @@
                 </form>
                 <a href="{{ url_for('perfil') }}" class="botao-voltar">Voltar</a>
             </section>
-        </main>
-    </body>
-</html>
+        
+{% endblock %}

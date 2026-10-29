@@ -9,7 +9,9 @@
     <body>
         <main class="pagina-login">
             <section class="area-logo">
-                <img src="{{ url_for('static', filename='uploads/logo-horizontal.png') }}" alt="Logo ARO" class="logo-aro">
+                <a class="link-logo" href="{{ url_for('landing') }}" aria-label="Voltar à página inicial do ARO">
+                    <img src="{{ url_for('static', filename='uploads/logo-horizontal.png') }}" alt="Logo ARO" class="logo-aro">
+                </a>
             </section>
             <section class="area-login">
                 <div class="card-login">
@@ -44,7 +46,7 @@
                 </div>
                 <div class="seguranca">
                     <span class="cadeado">🔒</span>
-                    <span>Ambiente seguro com criptografia 256-bit</span>
+                    <span>Suas senhas são protegidas com hash Bcrypt</span>
                 </div>
             </section>
         </main>

@@ -1,85 +1,16 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Início - ARO</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio_adm.css') }}">
-</head>
-
-<body>
-
-    <header class="cabecalho-aro">
-        <a href="{{ url_for('novo') }}" class="marca-aro">
-            <img
-                src="{{ url_for('static', filename='uploads/logo-horizontal.png') }}"
-                alt="Logo ARO"
-                class="logo-aro">
-        </a>
-
-        <nav class="menu-aro">
-            <a href="{{ url_for('novo') }}">Início</a>
-            <a href="{{ url_for('pagina_taxas') }}">Taxas</a>
-            <a href="#">Exercícios</a>
-            <a href="#">Empreendedores</a>
-        </nav>
-
-        <div class="acoes-aro">
-            <a href="{{ url_for('perfil_adm') }}">
-                <img src="{{ url_for('static', filename='uploads/perfil.png') }}" alt="Perfil" class="perfil">
-            </a>
-
-            <form action="{{ url_for('logout') }}" method="POST">
-                <button type="submit" class="sair-aro">Sair</button>
-            </form>
-        </div>
-    </header>
-
-    <!-- CONTEÚDO -->
-    <main>
-
-        <h1>Olá, {{ usuario }}!</h1>
-
-        <!-- Somente a página do administrador tem este botão. -->
-        <a href="{{ url_for('pagina_taxas') }}" class="botao">Gerenciar taxas</a>
-
-        {% with mensagens = get_flashed_messages(with_categories=true) %}
-
-        {% for categoria, mensagem in mensagens %}
-        <p class="mensagem {{ categoria }}">{{ mensagem }}</p>
-
-        {% endfor %}
-
-        {% endwith %}
-
-    </main>
-
-<!-- MENU DE NAVEGAÇÃO MOBILE -->
-        <nav class="menu-rodape">
-
-            <a href="/emprestimos">
-                <img src="/static/uploads/cartao.png" alt="Empréstimos">
-            </a>
-
-            <a href="/taxas">
-                <img src="/static/uploads/seta.png" alt="Taxas">
-            </a>
-
-            <a href="/admin" class="inicio">
-                <img src="/static/uploads/casa.png" alt="Início">
-            </a>
-
-            <a href="/exercicios">
-                <img src="/static/uploads/maleta.png" alt="Movimentação">
-            </a>
-
-            <a href="/perfil_adm">
-                <img src="/static/uploads/perfil2.png" alt="Perfil">
-            </a>
-
-        </nav>
-
-</body>
-
-</html>
+{% extends "base_financeiro.html" %}
+{% set titulo = "Início" %}
+{% block conteudo %}
+<p class="subtitulo">PAINEL FINANCEIRO</p>
+<h1>Olá, {{ usuario }}!</h1>
+<p>Acompanhe seus lançamentos e organize seus próximos passos.</p>
+<div class="atalhos">
+    <a class="cartao" href="{{ url_for('saldo_atual') }}"><h2>Saldo atual</h2><p>Receitas, despesas e gráfico.</p></a>
+    <a class="cartao" href="{{ url_for('receitas') }}"><h2>Receitas</h2><p>Cadastre e consulte suas entradas.</p></a>
+    <a class="cartao" href="{{ url_for('despesas') }}"><h2>Despesas</h2><p>Organize suas saídas e parcelas.</p></a>
+    <a class="cartao" href="{{ url_for('simular_emprestimo') }}"><h2>Novo empréstimo</h2><p>Simule antes de confirmar.</p></a>
+    <a class="cartao" href="{{ url_for('emprestimos') }}"><h2>Empréstimos realizados</h2><p>Consulte contratos e baixe o PDF.</p></a>
+    <a class="cartao" href="{{ url_for('extrato') }}"><h2>Extrato</h2><p>Consulte um período e baixe o PDF.</p></a>
+    {% if session['tipo_usuario'] == 1 %}<a class="cartao" href="{{ url_for('pagina_taxas') }}"><h2>Taxas</h2><p>Gerencie a taxa dos novos empréstimos.</p></a>{% endif %}
+</div>
+{% endblock %}

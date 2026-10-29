@@ -1,135 +1,23 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Perfil - ARO</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil_adm.css') }}">
-</head>
-
-<body>
-
-    <header class="cabecalho-aro">
-        <a href="{{ url_for('novo') }}" class="marca-aro">
-            <img
-                src="{{ url_for('static', filename='uploads/logo-horizontal.png') }}"
-                alt="Logo ARO"
-                class="logo-aro">
-        </a>
-
-        <nav class="menu-aro">
-            <a href="{{ url_for('novo') }}">Início</a>
-            <a href="{{ url_for('pagina_taxas') }}">Taxas</a>
-            <a href="#">Exercícios</a>
-            <a href="#">Empreendedores</a>
-        </nav>
-
-        <div class="acoes-aro">
-            <a href="{{ url_for('perfil_adm') }}">
-                <img src="{{ url_for('static', filename='uploads/perfil.png') }}" alt="Perfil" class="perfil">
-            </a>
-
-            <form action="{{ url_for('logout') }}" method="POST">
-                <button type="submit" class="sair-aro">Sair</button>
-            </form>
-        </div>
-    </header>
-
-    <!-- CONTEÚDO -->
-    <main>
-
-        <h3>Meu Perfil</h3>
-        <p class="subtitulo">Visualize seus dados cadastrais.</p>
-
-        <section class="perfil">
-
-            <div class="foto-perfil">
-                <a href="{{ url_for('perfil') }}">
-                    <img src="{{ url_for('static', filename='uploads/perfil.png') }}" alt="Perfil" class="perfil3">
-                </a>
-                <h3>Administrador</h3>
-            </div>
-
-            <div class="dados">
-
-                <div class="informacao">
-                    <span class="icone">●</span>
-                    <div>
-                        <p>Nome</p>
-                        <strong>{{ usuario[1] }}</strong>
-                    </div>
-                </div>
-
-                <div class="informacao">
-                    <span class="icone">✉</span>
-                    <div>
-                        <p>Email</p>
-                        <strong>{{ usuario[2] }}</strong>
-                    </div>
-                </div>
-
-                <div class="informacao">
-                    <span class="icone">▣</span>
-                    <div>
-                        <p>Cargo</p>
-                        <strong>Administrador</strong>
-                    </div>
-                </div>
-                <a class="alterar" href="{{ url_for('editar_usuario') }}">
-                    Alterar dados
-                </a>
-            </div>
-
-        </section>
-
-        <form action="{{ url_for('logout') }}" method="POST">
-            <button class="sair" type="submit">Sair da conta</button>
+{% extends "base_financeiro.html" %}
+{% set titulo = "Meu perfil" %}
+{% block conteudo %}
+<h1>Meu perfil</h1>
+<section class="perfil-cartao">
+    <div class="foto-perfil">
+        {% if usuario[3] %}
+        <img class="foto-usuario" src="{{ url_for('static', filename='uploads/' + usuario[3]) }}" alt="Sua foto de perfil">
+        {% else %}
+        <img class="foto-usuario" src="{{ url_for('static', filename='uploads/perfil.png') }}" alt="Perfil">
+        {% endif %}
+        <form method="POST" action="{{ url_for('salvar_foto') }}" enctype="multipart/form-data">
+            <label for="foto">Foto de perfil (PNG ou JPG, até 5 MB)</label>
+            <input id="foto" type="file" name="foto" accept="image/png,image/jpeg" required>
+            <button type="submit">Enviar foto</button>
         </form>
-
-    </main>
-
-    <!-- RODAPÉ -->
-    <footer>
-
-        <div class="links-rodape">
-            <a href="{{ url_for('novo') }}">Início</a>
-            <a href="#">Empréstimos</a>
-            <a href="#">Novo empréstimo</a>
-            <a href="#">Movimento</a>
-            <a href="{{ url_for('perfil') }}">Perfil</a>
-        </div>
-
-        <p>Termos de uso | Política de privacidade</p>
-
-    </footer>
-
-
-<!-- MENU DE NAVEGAÇÃO MOBILE -->
-        <nav class="menu-rodape">
-
-            <a href="/emprestimos">
-                <img src="/static/uploads/cartao.png" alt="Empréstimos">
-            </a>
-
-            <a href="/taxas">
-                <img src="/static/uploads/seta.png" alt="Taxas">
-            </a>
-
-            <a href="/admin" class="inicio">
-                <img src="/static/uploads/casa.png" alt="Início">
-            </a>
-
-            <a href="/exercicios">
-                <img src="/static/uploads/maleta.png" alt="Movimentação">
-            </a>
-
-            <a href="/perfil_adm">
-                <img src="/static/uploads/perfil2.png" alt="Perfil">
-            </a>
-
-        </nav>
-
-</body>
-
-</html>
+    </div>
+    <div><h2>{{ usuario[1] }}</h2><p>{{ usuario[2] }}</p>
+        <p>{{ 'Administrador' if session['tipo_usuario'] == 1 else 'Usuário' }}</p>
+        <a class="botao" href="{{ url_for('editar_usuario') }}">Alterar dados</a>
+    </div>
+</section>
+{% endblock %}
