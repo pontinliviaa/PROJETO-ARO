@@ -1,0 +1,52 @@
+{% extends "base_financeiro.html" %}
+{% set titulo = "Saldo atual" %}
+{% block conteudo %}
+<div class="saldo-cabecalho">
+    <div>
+        <p class="subtitulo">SUAS FINANÇAS, MAIS CLARAS</p>
+        <h1>Saldo atual</h1>
+        <p>Entradas e saídas com data até {{ hoje }}. Os próximos meses ficam agendados.</p>
+    </div>
+    <a class="botao secundario" href="{{ url_for('extrato') }}">Consultar extrato</a>
+</div>
+<div class="resumo">
+    <section class="cartao receita">
+        <p class="rotulo-saldo">ENTRADAS</p>
+        <h2>R$ {{ total_receitas }}</h2>
+        <p>Receitas com data até hoje</p>
+        <a href="{{ url_for('receitas') }}">Ver receitas →</a>
+    </section>
+    <section class="cartao despesa">
+        <p class="rotulo-saldo">SAÍDAS</p>
+        <h2>R$ {{ total_despesas }}</h2>
+        <p>Despesas com data até hoje</p>
+        <a href="{{ url_for('despesas') }}">Ver despesas →</a>
+    </section>
+    <section class="cartao saldo-destaque">
+        <p class="rotulo-saldo">SALDO DOS LANÇAMENTOS</p>
+        <h2>R$ {{ saldo }}</h2>
+        <p>Receitas menos despesas</p>
+        {% if saldo < 0 %}<strong>As despesas ultrapassam as receitas.</strong>
+        {% else %}<strong>Confira os detalhes no seu extrato.</strong>{% endif %}
+    </section>
+</div>
+<div class="aviso-saldo">
+    <strong>O que entra nesses valores?</strong>
+    <p>Somente os lançamentos com data até hoje, inclusive os de meses anteriores. Receitas recorrentes, despesas recorrentes e parcelas futuras entram apenas quando chega a data prevista. O sistema considera a data cadastrada; não confirma recebimentos ou pagamentos bancários.</p>
+</div>
+<h2>Organize seu próximo passo</h2>
+<div class="duas-colunas">
+    <section class="cartao acao-saldo">
+        <span class="numero-acao">01</span>
+        <h2>Registre suas entradas</h2>
+        <p>Adicione uma receita variável ou programe uma receita recorrente, como seu salário.</p>
+        <a class="botao" href="{{ url_for('receitas') }}">Gerenciar receitas</a>
+    </section>
+    <section class="cartao acao-saldo">
+        <span class="numero-acao">02</span>
+        <h2>Acompanhe suas saídas</h2>
+        <p>Mantenha suas despesas organizadas e consulte os lançamentos de cada mês.</p>
+        <a class="botao secundario" href="{{ url_for('despesas') }}">Gerenciar despesas</a>
+    </section>
+</div>
+{% endblock %}

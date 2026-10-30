@@ -1,0 +1,586 @@
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FCF9F9;
+    color: #25232A;
+}
+
+
+/* CABEÇALHO */
+
+.cabecalho {
+    width: 100%;
+    min-height: 65px;
+    padding: 12px 3.3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background-color: white;
+    box-shadow: 0 2px 4px #00000020;
+}
+
+.cabecalho .logo {
+    display: block;
+    width: 110px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* IMAGEM DE PERFIL DO CABEÇALHO */
+
+.cabecalho .perfil {
+    display: block;
+    width: 55px;
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+}
+
+
+/* MENU SUPERIOR */
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.menu a {
+    color: #603B98;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: #8B61BD;
+}
+
+
+/* AÇÕES DO CABEÇALHO */
+
+.acoes {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.acoes form {
+    margin: 0;
+}
+
+.botao-sair {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #603B98;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botao-sair:hover {
+    background-color: #45276F;
+}
+
+
+/* CONTEÚDO PRINCIPAL */
+
+main {
+    width: 72%;
+    max-width: 1100px;
+    margin: 30px auto 65px;
+}
+
+main > h3 {
+    font-size: 20px;
+}
+
+.subtitulo {
+    color: #77727F;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 25px;
+}
+
+
+/* CARTÃO DO PERFIL */
+
+main .perfil {
+    width: 100%;
+    min-height: 380px;
+    padding: 60px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 40px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+/* FOTO DO PERFIL */
+
+.foto-perfil {
+    width: 40%;
+    text-align: center;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #5B3A8E;
+    color: white;
+    border-radius: 50%;
+    font-size: 50px;
+}
+
+.foto-perfil h3 {
+    font-size: 18px;
+}
+
+
+/* DADOS DO USUÁRIO */
+
+.dados {
+    width: 48%;
+    min-width: 0;
+}
+
+.informacao {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.icone {
+    width: 32px;
+    flex-shrink: 0;
+    color: #77727F;
+    font-size: 28px;
+    text-align: center;
+}
+
+.informacao p {
+    color: #77727F;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.informacao strong {
+    font-size: 14px;
+    font-weight: normal;
+    overflow-wrap: break-word;
+}
+
+
+/* BOTÃO ALTERAR DADOS */
+
+.alterar {
+    display: block;
+    width: 100%;
+    padding: 13px 15px;
+    background-color: #5B3A8E;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.alterar:hover {
+    background-color: #45276F;
+}
+
+.perfil3 {
+    width: 250px;
+}
+
+/* BOTÃO SAIR DA CONTA */
+
+.sair {
+    margin-top: 18px;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #EAB7B7;
+    color: #25232A;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.sair:hover {
+    background-color: #DEA1A1;
+}
+
+
+/* RODAPÉ TRADICIONAL */
+
+footer {
+    min-height: 155px;
+    padding: 25px 20px;
+    background-color: #F0E2FF;
+    text-align: center;
+}
+
+.links-rodape {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.links-rodape a {
+    color: #5B3A8E;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+footer p {
+    font-size: 13px;
+}
+
+footer .direitos {
+    margin-top: 35px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/* MENU MOBILE ESCONDIDO NO COMPUTADOR */
+
+.menu-rodape {
+    display: none;
+}
+
+
+/* TABLET - ATÉ 1000PX */
+
+@media (max-width: 1000px) {
+
+    .cabecalho {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .menu {
+        gap: 20px;
+    }
+
+    .menu a {
+        font-size: 14px;
+    }
+
+    main {
+        width: 85%;
+    }
+
+    main .perfil {
+        padding: 45px 30px;
+        gap: 30px;
+    }
+
+}
+
+
+/* CELULAR E TABLET - ATÉ 768PX */
+
+@media (max-width: 768px) {
+
+    /* HEADER RESPONSIVO */
+
+    .cabecalho {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px 15px;
+        min-height: 65px;
+    }
+
+    /* ESCONDER MENU SUPERIOR */
+
+    .cabecalho .menu {
+        display: none;
+    }
+
+    /* LOGO */
+
+    .cabecalho .logo {
+        width: 100px;
+        height: auto;
+    }
+
+    /* FOTO E BOTÃO DE SAIR */
+
+    .cabecalho .acoes {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .cabecalho .perfil {
+        width: 38px;
+        height: 38px;
+        object-fit: contain;
+    }
+
+    .cabecalho .botao-sair {
+        padding: 8px 12px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+
+    /* ESCONDER RODAPÉ TRADICIONAL */
+
+    footer:not(.menu-rodape) {
+        display: none;
+    }
+
+
+    /* MENU DE NAVEGAÇÃO INFERIOR */
+
+    .menu-rodape {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        height: 65px;
+        min-height: 65px;
+
+        padding: 0 8px;
+
+        background-color: white;
+        box-shadow: 0 -2px 5px #00000020;
+
+        z-index: 1000;
+    }
+
+    /* LINKS DO MENU INFERIOR */
+
+    .menu-rodape a {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        min-width: 0;
+        height: 100%;
+
+        gap: 3px;
+
+        color: #77717E;
+        text-decoration: none;
+        font-size: 10px;
+        font-weight: normal;
+    }
+
+    /* IMAGENS DOS ÍCONES */
+
+    .menu-rodape a img {
+        display: block;
+        width: 38px;
+        height: 34px;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    /* NOMES DOS ÍCONES */
+
+    .menu-rodape a span {
+        font-size: 10px;
+        font-weight: normal;
+        color: #77717E;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    /* BOTÃO CENTRAL DE INÍCIO */
+
+    .menu-rodape a.inicio {
+        flex: 1;
+        position: relative;
+        height: 100%;
+        background: transparent;
+        border-radius: 0;
+        z-index: 0;
+        isolation: isolate;
+    }
+
+    /* CÍRCULO ROXO */
+
+    .menu-rodape a.inicio::before {
+        content: "";
+        position: absolute;
+
+        width: 82px;
+        height: 82px;
+
+        background-color: #603B98;
+        border-radius: 50%;
+
+        bottom: 14px;
+        z-index: -1;
+    }
+
+    /* IMAGEM DA CASA */
+
+    .menu-rodape a.inicio img {
+        width: 52px;
+        height: 52px;
+
+        position: relative;
+        bottom: 22px;
+
+        object-fit: contain;
+    }
+
+
+    /* CONTEÚDO PRINCIPAL */
+
+    main {
+        width: 92%;
+        margin: 30px auto 50px;
+    }
+
+    main .perfil {
+        min-height: auto;
+        flex-direction: column;
+        padding: 35px 20px;
+        gap: 35px;
+    }
+
+    /* FOTO E DADOS DO PERFIL */
+
+    .foto-perfil,
+    .dados {
+        width: 100%;
+    }
+
+    .foto-perfil {
+        text-align: center;
+    }
+
+    .avatar {
+        width: 90px;
+        height: 90px;
+        font-size: 45px;
+        margin-bottom: 20px;
+    }
+
+    .informacao {
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    /* ESPAÇO PARA O MENU INFERIOR */
+
+    body {
+        padding-bottom: 85px;
+    }
+
+}
+
+
+/* CELULARES PEQUENOS - ATÉ 380PX */
+
+@media (max-width: 380px) {
+
+    /* HEADER */
+
+    .cabecalho {
+        padding: 10px;
+        gap: 6px;
+    }
+
+    .cabecalho .logo {
+        width: 85px;
+    }
+
+    .cabecalho .acoes {
+        gap: 6px;
+    }
+
+    .cabecalho .perfil {
+        width: 32px;
+        height: 32px;
+    }
+
+    .cabecalho .botao-sair {
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    /* CONTEÚDO */
+
+    main {
+        width: 94%;
+    }
+
+    main .perfil {
+        padding: 25px 15px;
+    }
+
+    /* MENU INFERIOR */
+
+    .menu-rodape {
+        padding: 0 3px;
+    }
+
+    .menu-rodape a img {
+        width: 32px;
+        height: 30px;
+    }
+
+    .menu-rodape a span {
+        font-size: 9px;
+    }
+
+    .menu-rodape a.inicio::before {
+        width: 72px;
+        height: 72px;
+        bottom: 17px;
+    }
+
+    .menu-rodape a.inicio img {
+        width: 45px;
+        height: 45px;
+        bottom: 18px;
+    }
+
+}

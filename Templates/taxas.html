@@ -1,0 +1,61 @@
+{% extends "base_financeiro.html" %}
+{% set titulo = "Taxas" %}
+{% block conteudo %}
+<h1>Taxa de juros</h1>
+<p class="subtitulo">Gerencie as taxas mensais por data de referência.</p>
+<div class="taxas-layout">
+    <section class="cartao">
+        <h2>{{ 'Editar taxa' if editar else 'Cadastro de taxa' }}</h2>
+        <form method="POST" action="{% if editar %}{{ url_for('editar_taxa', id_taxa=editar[0]) }}{% else %}{{ url_for('cadastrar_taxa') }}{% endif %}">
+            <label for="percentual">Taxa de juros mensal (%)</label>
+            <input id="percentual" type="number" name="percentual" min="0.01" max="100" step="0.01"
+                   placeholder="Ex.: 1.5" required value="{{ editar[1] if editar else '' }}">
+            <p class="observacao">
+                Data de referência:
+                {% if editar %}{{ editar[2] }}{% else %}preenchida automaticamente ao salvar{% endif %}.
+            </p>
+            <div class="acoes">
+                <button type="submit">Salvar taxa</button>
+                {% if editar %}
+                <a class="cancelar" href="{{ url_for('pagina_taxas') }}">Cancelar</a>
+                {% endif %}
+            </div>
+        </form>
+    </section>
+    <section class="cartao">
+        <h2>Taxas cadastradas</h2>
+        <div class="tabela-rolagem">
+            <table class="tabela-cards">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Taxa mensal (%)</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for taxa in taxas %}
+                    <tr>
+                        <td data-label="Data">{{ taxa[2] }}</td>
+                        <td data-label="Taxa mensal (%)">{{ taxa[1] }}%</td>
+                        <td data-label="Ações">
+                            <div class="acoes">
+                                <a href="{{ url_for('pagina_taxas', editar=taxa[0]) }}">Editar</a>
+                                <form method="POST" action="{{ url_for('excluir_taxa', id_taxa=taxa[0]) }}"
+                                      onsubmit="return confirm('Deseja excluir esta taxa?')">
+                                    <button type="submit" class="excluir">Excluir</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="3">Nenhuma taxa cadastrada.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+{% endblock %}

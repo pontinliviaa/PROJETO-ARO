@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }} - ARO</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nova_sprint.css') }}">
+</head>
+<body>
+    <header class="cabecalho">
+        <a href="{{ url_for('novo') }}"><img class="logo" src="{{ url_for('static', filename='uploads/logo-horizontal.png') }}" alt="ARO"></a>
+        <nav class="menu" aria-label="Menu principal">
+            <a href="{{ url_for('novo') }}">Início</a>
+            <a href="{{ url_for('saldo_atual') }}">Saldo atual</a>
+            <a href="{{ url_for('emprestimos') }}">Empréstimos</a>
+            <a href="{{ url_for('extrato') }}">Extrato</a>
+            {% if session['tipo_usuario'] == 1 %}
+            <a href="{{ url_for('pagina_taxas') }}">Taxas</a>
+            <a href="{{ url_for('limites_parcelas') }}">Limites</a>
+            {% endif %}
+        </nav>
+        <div class="acoes-conta">
+            <a href="{{ url_for('perfil') }}">Perfil</a>
+            <form method="POST" action="{{ url_for('logout') }}"><button type="submit">Sair</button></form>
+        </div>
+    </header>
+    <main>
+        {% for categoria, mensagem in get_flashed_messages(with_categories=true) %}
+        <p class="mensagem {{ categoria }}" role="status">{{ mensagem }}</p>
+        {% endfor %}
+        {% block conteudo %}{% endblock %}
+    </main>
+    <footer>ARO · Seu controle financeiro</footer>
+</body>
+</html>
