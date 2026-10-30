@@ -18,7 +18,7 @@ app.config["SECRET_KEY"] = "Chavesdfglkjhgfdshjkjhgfdcvbmnb"
 app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
 # CONEXÃO COM O BANCO
 host = "localhost"
-database = r"C:\Users\Aluno\Downloads\PROJETO-ARO\BANCO.FDB"
+database = r"C:\Users\Aluno\Desktop\ARO\BANCO.FDB"
 user = "SYSDBA"
 password = "sysdba"
 
@@ -1112,114 +1112,9 @@ def arquivo_grande(erro):
     return redirect(url_for("perfil"))
 
 
-# LIMITES DE PARCELAS DO ADMINISTRADOR
-
-@app.route("/limites-parcelas", methods=["GET", "POST"])
-@app.route("/limites-parcelas/<int:id_limite>/editar", methods=["GET", "POST"])
-def limites_parcelas(id_limite=None):
-    if not usuario_autenticado():
-        return redirect(url_for("login"))
-    if session["tipo_usuario"] != TIPO_ADM:
-        flash("Somente o administrador pode alterar os limites de parcelas.", "error")
-        return redirect(url_for("novo"))
-
-    cursor = con.cursor()
-    editar = None
-    try:
-        if id_limite is not None:
-            cursor.execute("""SELECT ID_LIMITE, VALOR_MAXIMO, QUANTIDADE_MAXIMA
-                              FROM ARO_LIMITE_PARCELAS WHERE ID_LIMITE = ?""", (id_limite,))
-            editar = cursor.fetchone()
-            if editar is None:
-                flash("Limite não encontrado.", "error")
-                return redirect(url_for("limites_parcelas"))
-
-        if request.method == "POST":
-            valor_maximo = valor_positivo(request.form.get("valor_maximo", ""))
-            quantidade_maxima = int(request.form.get("quantidade_maxima", ""))
-            if valor_maximo > Decimal("1000000"):
-                raise ValueError("O valor máximo da faixa deve ser de até R$ 1.000.000.")
-            if quantidade_maxima < 1 or quantidade_maxima > 60:
-                raise ValueError("Escolha de 1 a 60 parcelas.")
-
-            cursor.execute("SELECT ID_LIMITE FROM ARO_LIMITE_PARCELAS WHERE VALOR_MAXIMO = ?", (valor_maximo,))
-            repetido = cursor.fetchone()
-            if repetido and repetido[0] != id_limite:
-                flash("Já existe uma faixa com esse valor máximo. Edite a faixa existente.", "error")
-                return redirect(url_for("limites_parcelas", id_limite=id_limite))
-
-            if editar is None:
-                cursor.execute("""INSERT INTO ARO_LIMITE_PARCELAS (VALOR_MAXIMO, QUANTIDADE_MAXIMA)
-                                  VALUES (?, ?)""", (valor_maximo, quantidade_maxima))
-            else:
-                cursor.execute("""UPDATE ARO_LIMITE_PARCELAS
-                                  SET VALOR_MAXIMO = ?, QUANTIDADE_MAXIMA = ?
-                                  WHERE ID_LIMITE = ?""", (valor_maximo, quantidade_maxima, id_limite))
-            con.commit()
-            flash("Limite de parcelas salvo!", "success")
-            return redirect(url_for("limites_parcelas"))
-
-        cursor.execute("""SELECT ID_LIMITE, VALOR_MAXIMO, QUANTIDADE_MAXIMA
-                          FROM ARO_LIMITE_PARCELAS ORDER BY VALOR_MAXIMO""")
-        limites = cursor.fetchall()
-        return render_template("limites_parcelas.html", limites=limites, editar=editar)
-    except (ValueError, InvalidOperation):
-        con.rollback()
-        flash("Informe um valor positivo de até R$ 1.000.000, com até duas casas decimais, e de 1 a 60 parcelas inteiras.", "error")
-        return redirect(url_for("limites_parcelas", id_limite=id_limite))
-    except Exception:
-        con.rollback()
-        app.logger.exception("Erro ao salvar ou consultar limites de parcelas")
-        flash("Não foi possível salvar ou consultar os limites.", "error")
-        return redirect(url_for("admin"))
-    finally:
-        con.rollback()
-        cursor.close()
-
-
-@app.route("/limites-parcelas/<int:id_limite>/excluir", methods=["POST"])
-def excluir_limite_parcelas(id_limite):
-    if not usuario_autenticado():
-        return redirect(url_for("login"))
-    if session["tipo_usuario"] != TIPO_ADM:
-        flash("Somente o administrador pode excluir limites de parcelas.", "error")
-        return redirect(url_for("novo"))
-
-    cursor = con.cursor()
-    try:
-        cursor.execute("DELETE FROM ARO_LIMITE_PARCELAS WHERE ID_LIMITE = ?", (id_limite,))
-        if cursor.rowcount == 0:
-            flash("Limite não encontrado.", "error")
-        else:
-            con.commit()
-            flash("Limite de parcelas excluído!", "success")
-    except Exception:
-        con.rollback()
-        app.logger.exception("Erro ao excluir limite de parcelas")
-        flash("Não foi possível excluir o limite.", "error")
-    finally:
-        con.rollback()
-        cursor.close()
-    return redirect(url_for("limites_parcelas"))
-
-
-# CONSULTAR O LIMITE PELO VALOR DO EMPRÉSTIMO
-
-def consultar_limite_parcelas(cursor, valor):
-    cursor.execute("""SELECT FIRST 1 QUANTIDADE_MAXIMA FROM ARO_LIMITE_PARCELAS
-                      WHERE VALOR_MAXIMO >= ? ORDER BY VALOR_MAXIMO""", (valor,))
-    limite = cursor.fetchone()
-    if limite is None:
-        raise ValueError("O administrador precisa cadastrar uma faixa de parcelas que cubra esse valor.")
-    return limite[0]
-
-
 # SIMULAÇÃO DO EMPRÉSTIMO
 
 def calcular_emprestimo(cursor, valor, quantidade):
-    maximo_parcelas = consultar_limite_parcelas(cursor, valor)
-    if quantidade > maximo_parcelas:
-        raise ValueError("Para esse valor, o administrador permite no máximo " + str(maximo_parcelas) + " parcela(s).")
     cursor.execute("SELECT FIRST 1 PERCENTUAL FROM ARO_TAXA WHERE DATA_REFERENCIA <= CURRENT_DATE ORDER BY DATA_REFERENCIA DESC, ID_TAXA DESC")
     taxa = cursor.fetchone()
     if taxa is None:
@@ -1229,8 +1124,8 @@ def calcular_emprestimo(cursor, valor, quantidade):
     total = valor + juros
     parcela = (total / quantidade).quantize(Decimal("0.01"), rounding="ROUND_DOWN")
     ultima_parcela = total - parcela * (quantidade - 1)
-    if parcela <= 0:
-        raise ValueError("O valor é muito pequeno para essa quantidade de parcelas.")
+    if parcela < Decimal("30") or ultima_parcela < Decimal("30"):
+        raise ValueError("Cada parcela deve ser de pelo menos R$ 30, incluindo os juros. Diminua a quantidade de parcelas ou aumente o valor do empréstimo.")
     hoje = date.today()
     cursor.execute("SELECT DATA_MOVIMENTO, VALOR FROM ARO_RECEITA WHERE ID_USUARIO = ? AND ID_EMPRESTIMO IS NULL", (session["id_usuario"],))
     receitas_mes = Decimal("0")
@@ -1251,8 +1146,7 @@ def calcular_emprestimo(cursor, valor, quantidade):
         risco = "Baixo"
     return {"valor": valor, "quantidade": quantidade, "percentual": percentual,
             "juros": juros, "total": total, "parcela": parcela,
-            "ultima_parcela": ultima_parcela, "sobra": sobra, "risco": risco,
-            "maximo_parcelas": maximo_parcelas}
+            "ultima_parcela": ultima_parcela, "sobra": sobra, "risco": risco}
 
 
 @app.route("/emprestimos/simular", methods=["GET", "POST"])
@@ -1260,7 +1154,6 @@ def simular_emprestimo():
     if not usuario_autenticado():
         return redirect(url_for("login"))
     simulacao = None
-    limites = []
     if request.method == "POST":
         session.pop("simulacao", None)
         cursor = con.cursor()
@@ -1280,15 +1173,7 @@ def simular_emprestimo():
         finally:
             con.rollback()
             cursor.close()
-    cursor = con.cursor()
-    try:
-        cursor.execute("""SELECT VALOR_MAXIMO, QUANTIDADE_MAXIMA
-                          FROM ARO_LIMITE_PARCELAS ORDER BY VALOR_MAXIMO""")
-        limites = cursor.fetchall()
-    finally:
-        con.rollback()
-        cursor.close()
-    return render_template("simular_emprestimo.html", simulacao=simulacao, limites=limites)
+    return render_template("simular_emprestimo.html", simulacao=simulacao)
 
 
 # CONFIRMAR EMPRÉSTIMO, RECEITA E PARCELAS

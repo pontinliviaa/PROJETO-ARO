@@ -16,7 +16,6 @@
             <a href="{{ url_for('extrato') }}">Extrato</a>
             {% if session['tipo_usuario'] == 1 %}
             <a href="{{ url_for('pagina_taxas') }}">Taxas</a>
-            <a href="{{ url_for('limites_parcelas') }}">Limites</a>
             {% endif %}
         </nav>
         <div class="acoes-conta">
