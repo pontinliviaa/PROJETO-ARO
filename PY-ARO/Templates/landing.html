@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARO — Suas finanças, mais simples</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+</head>
+<body>
+    <!-- CABEÇALHO -->
+    <header class="cabecalho-landing">
+        <nav class="navegacao">
+            <a class="marca" href="{{ url_for('landing') }}" aria-label="Página inicial do ARO">
+                <img src="{{ url_for('static', filename='uploads/logo-horizontal.png') }}" alt="ARO">
+            </a>
+            <div class="menu">
+                <a href="#solucoes">Soluções</a>
+                <a href="#seguranca">Sua conta</a>
+                <a href="#praticidade">Praticidade</a>
+            </div>
+            <a href="{{ url_for('login') }}" class="botao botao-entrar">Entrar na conta</a>
+        </nav>
+    </header>
+    <main>
+        <!-- APRESENTAÇÃO -->
+        <section class="inicio" id="inicio">
+            <div class="limite apresentacao">
+                <div class="conteudo">
+                    <p class="etiqueta">MAIS ORGANIZAÇÃO. MAIS TRANQUILIDADE.</p>
+                    <h1>Seu dinheiro, em ordem.<br><span>Seus planos, mais perto.</span></h1>
+                    <p class="descricao">Receitas, despesas e empréstimos em um só lugar. Com o ARO, acompanhar suas finanças faz parte da sua rotina.</p>
+                    <div class="botoes">
+                        <a href="{{ url_for('pagina_cadastro') }}" class="botao">Começar agora →</a>
+                        <a href="#solucoes" class="link-conhecer">Conheça o ARO</a>
+                    </div>
+                    <p class="nota">Organize o presente e planeje os próximos meses.</p>
+                </div>
+                <div class="imagem-inicio">
+                    <img src="{{ url_for('static', filename='uploads/pc-landing-page.png') }}" alt="Ilustração de um computador representando o controle financeiro">
+                </div>
+            </div>
+        </section>
+        <!-- SOLUÇÕES -->
+        <section class="solucoes limite" id="solucoes">
+            <p class="etiqueta">UM LUGAR PARA CADA PLANO</p>
+            <h2>O essencial para cuidar<br>do seu dinheiro.</h2>
+            <p class="texto-apoio">Ferramentas simples para entender suas contas e organizar os próximos passos.</p>
+            <div class="cards">
+                <article class="card">
+                    <img src="{{ url_for('static', filename='uploads/conta_digital.png') }}" alt="" class="icone-img">
+                    <h3>Receitas e despesas</h3>
+                    <p>Registre suas entradas e saídas, variáveis ou recorrentes.</p>
+                </article>
+                <article class="card">
+                    <img src="{{ url_for('static', filename='uploads/cartao_sem_anuidade.png') }}" alt="" class="icone-img">
+                    <h3>Empréstimos</h3>
+                    <p>Simule valores, conheça as parcelas e consulte seus contratos.</p>
+                </article>
+                <article class="card">
+                    <img src="{{ url_for('static', filename='uploads/seguranca_avancada.png') }}" alt="" class="icone-img">
+                    <h3>Seu extrato</h3>
+                    <p>Filtre os lançamentos por período e baixe o relatório em PDF.</p>
+                </article>
+            </div>
+        </section>
+        <!-- CONTA -->
+        <section class="seguranca" id="seguranca">
+            <div class="limite bloco-duplo">
+                <div class="imagem-seguranca">
+                    <img src="{{ url_for('static', filename='uploads/seguranca_aro.png') }}" alt="Ilustração de proteção da conta">
+                </div>
+                <div class="texto-secao">
+                    <p class="etiqueta">SUA CONTA, SEU ESPAÇO</p>
+                    <h2>Seu controle financeiro<br>começa com você.</h2>
+                    <p>Acesse seus próprios lançamentos, atualize seu perfil e mantenha seus dados organizados. Sua senha fica protegida por hash e o login possui bloqueio após três erros.</p>
+                    <a href="{{ url_for('login') }}" class="botao">Acessar minha conta →</a>
+                </div>
+            </div>
+        </section>
+        <!-- PRATICIDADE -->
+        <section class="praticidade limite bloco-duplo" id="praticidade">
+            <div class="texto-secao">
+                <p class="etiqueta">DO SEU JEITO, NO SEU TEMPO</p>
+                <h2>Uma rotina mais leve.<br>Uma visão mais clara.</h2>
+                <p>No computador ou no celular, acompanhe o total das receitas, das despesas e o saldo. Programe os lançamentos recorrentes e deixe os próximos meses organizados.</p>
+                <a href="{{ url_for('pagina_cadastro') }}" class="link-conhecer">Criar minha conta →</a>
+            </div>
+            <div class="imagem-celular">
+                <img src="{{ url_for('static', filename='uploads/celular-landing-page.png') }}" alt="Ilustração de acesso pelo celular">
+            </div>
+        </section>
+        <!-- CONVITE FINAL -->
+        <section class="final limite">
+            <div>
+                <p class="etiqueta">SEU PRÓXIMO PASSO</p>
+                <h2>Mais clareza para<br>seguir em frente.</h2>
+                <p>Comece a organizar suas finanças com o ARO.</p>
+            </div>
+            <a href="{{ url_for('pagina_cadastro') }}" class="botao botao-claro">Criar minha conta →</a>
+        </section>
+    </main>
+    <!-- RODAPÉ -->
+    <footer class="rodape limite">
+        <a class="marca" href="#inicio"><img src="{{ url_for('static', filename='uploads/logo-horizontal.png') }}" alt="ARO — voltar ao topo"></a>
+        <div class="links"><a href="#solucoes">Soluções</a><a href="{{ url_for('login') }}">Entrar</a><a href="{{ url_for('pagina_cadastro') }}">Criar conta</a></div>
+        <p>© 2026 ARO · Projeto acadêmico de controle financeiro.</p>
+    </footer>
+</body>
+</html>

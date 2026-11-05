@@ -1,0 +1,100 @@
+{% extends "base_financeiro.html" %}
+{% set titulo = "Despesas" %}
+{% block conteudo %}
+<h1>Despesas</h1>
+<p>Variável cria um lançamento. Recorrente repete o valor mensalmente pela quantidade de meses escolhida.</p>
+<section>
+    <h2>{{ 'Editar despesa' if registro else 'Cadastrar despesa' }}</h2>
+    {% if registro %}
+    <form method="POST" action="{{ url_for('despesas', id_registro=registro[0]) }}">
+    {% else %}
+    <form method="POST" action="{{ url_for('despesas') }}">
+    {% endif %}
+        <label for="descricao">Descrição</label>
+        <input id="descricao" name="descricao" maxlength="100" required value="{{ registro[1] if registro else '' }}">
+        <label for="valor">Valor de cada lançamento (R$)</label>
+        <input type="number" id="valor" name="valor" min="0.01" max="9999999999.99" step="0.01" required value="{{ registro[2] if registro else '' }}">
+        <label for="data">{{ 'Data deste lançamento' if registro else 'Data inicial' }}</label>
+        <input type="date" id="data" name="data" required value="{{ registro[3].isoformat() if registro else hoje }}">
+        <label for="classificacao">Classificação</label>
+        <select id="classificacao" name="classificacao" required>
+            <option value="Variavel" {% if registro and registro[4] == 'Variavel' %}selected{% endif %}>Variável</option>
+            <option value="Recorrente" {% if registro and registro[4] == 'Recorrente' %}selected{% endif %}>Recorrente</option>
+        </select>
+        {% if not registro %}
+        <div id="campo-meses" hidden>
+            <label for="quantidade_meses">Quantidade de meses (incluindo o mês inicial)</label>
+            <input type="number" id="quantidade_meses" name="quantidade_meses" min="1" max="60" step="1" value="12" disabled>
+            <p>Exemplo: 3 meses a partir de janeiro cria janeiro, fevereiro e março. O dia se repete; se não existir no mês, usamos o último dia.</p>
+        </div>
+        {% else %}
+        <p>Esta edição altera somente o lançamento selecionado. Os demais meses continuam iguais, mesmo se mudar a classificação.</p>
+        {% endif %}
+        <button type="submit">{{ 'Salvar este lançamento' if registro else 'Cadastrar despesa' }}</button>
+        {% if registro %}<a href="{{ url_for('despesas') }}">Cancelar edição</a>{% endif %}
+    </form>
+</section>
+<section>
+    <h2>Lançamentos até hoje</h2>
+    <p>Somente os lançamentos com data até hoje entram no saldo atual. Editar ou excluir afeta apenas a linha selecionada.</p>
+    <div class="tabela"><table class="tabela-cards">
+        <thead><tr><th>Descrição</th><th>Valor</th><th>Data</th><th>Classificação</th><th>Ações</th></tr></thead>
+        <tbody>
+        {% for item in registros %}
+        <tr>
+            <td data-label="Descrição">{{ item[1] }}</td>
+            <td data-label="Valor">R$ {{ item[2] }}</td>
+            <td data-label="Data">{{ item[3] }}</td>
+            <td data-label="Classificação">{{ 'Variável' if item[4] == 'Variavel' else 'Recorrente' }}</td>
+            <td data-label="Ações"><div class="acoes">
+                <a href="{{ url_for('despesas', id_registro=item[0]) }}">Editar</a>
+                <form method="POST" action="{{ url_for('excluir_despesa', id_registro=item[0]) }}"><button type="submit" class="excluir">Excluir</button></form>
+            </div></td>
+        </tr>
+        {% else %}<tr><td colspan="5">Nenhum lançamento com data até hoje.</td></tr>{% endfor %}
+        </tbody>
+    </table></div>
+</section>
+<section>
+    <h2>Próximos lançamentos agendados</h2>
+    <p>Estes valores ainda não entram no saldo atual. Cada lançamento passa a contar automaticamente na sua data, ao abrir a página.</p>
+    <div class="tabela"><table class="tabela-cards">
+        <thead><tr><th>Descrição</th><th>Valor previsto</th><th>Data prevista</th><th>Classificação</th><th>Ações</th></tr></thead>
+        <tbody>
+        {% for item in agendados %}
+        <tr>
+            <td data-label="Descrição">{{ item[1] }}</td>
+            <td data-label="Valor previsto">R$ {{ item[2] }}</td>
+            <td data-label="Data prevista">{{ item[3] }}</td>
+            <td data-label="Classificação">{{ 'Variável' if item[4] == 'Variavel' else 'Recorrente' }}</td>
+            <td data-label="Ações"><div class="acoes">
+                <a href="{{ url_for('despesas', id_registro=item[0]) }}">Editar</a>
+                <form method="POST" action="{{ url_for('excluir_despesa', id_registro=item[0]) }}"><button type="submit" class="excluir">Excluir</button></form>
+            </div></td>
+        </tr>
+        {% else %}<tr><td colspan="5">Nenhum lançamento futuro agendado.</td></tr>{% endfor %}
+        </tbody>
+    </table></div>
+</section>
+{% if not registro %}
+<script>
+    const classificacao = document.getElementById("classificacao");
+    const campoMeses = document.getElementById("campo-meses");
+    const quantidadeMeses = document.getElementById("quantidade_meses");
+
+    function mostrarMeses() {
+        if (classificacao.value == "Recorrente") {
+            campoMeses.hidden = false;
+            quantidadeMeses.disabled = false;
+            quantidadeMeses.required = true;
+        } else {
+            campoMeses.hidden = true;
+            quantidadeMeses.disabled = true;
+            quantidadeMeses.required = false;
+        }
+    }
+    classificacao.addEventListener("change", mostrarMeses);
+    mostrarMeses();
+</script>
+{% endif %}
+{% endblock %}
