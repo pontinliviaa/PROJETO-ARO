@@ -678,7 +678,6 @@ def receitas(id_registro=None):
         return redirect(url_for("receitas", id_registro=id_registro))
     except Exception:
         con.rollback()
-        app.logger.exception("Erro ao consultar ou salvar receitas")
         flash("Não foi possível salvar. Nenhum lançamento desta operação foi confirmado.", "error")
         return redirect(url_for("receitas"))
     finally:
@@ -730,7 +729,6 @@ def excluir_receita(id_registro):
 
     except Exception:
         con.rollback()
-        app.logger.exception("Erro ao excluir receita")
         flash("Não foi possível excluir a receita.", "error")
 
     finally:
@@ -837,7 +835,6 @@ def despesas(id_registro=None):
         return redirect(url_for("despesas", id_registro=id_registro))
     except Exception:
         con.rollback()
-        app.logger.exception("Erro ao consultar ou salvar despesas")
         flash("Não foi possível salvar. Nenhum lançamento desta operação foi confirmado.", "error")
         return redirect(url_for("despesas"))
     finally:
@@ -878,7 +875,6 @@ def excluir_despesa(id_registro):
             flash("Despesa excluída com sucesso!", "success")
     except Exception as e:
         con.rollback()
-        app.logger.exception("Erro ao excluir despesa: %s", e)
         flash("Não foi possível excluir a despesa.", "error")
     finally:
         con.rollback()
@@ -936,7 +932,6 @@ def pagina_taxas():
         return render_template("taxas.html", taxas=taxas, editar=editar)
     except Exception as e:
         con.rollback()
-        app.logger.exception("Erro ao consultar taxas: %s", e)
         flash("Não foi possível consultar as taxas.", "error")
         return redirect(url_for("admin"))
     finally:
@@ -1019,7 +1014,6 @@ def editar_taxa(id_taxa):
         flash("Taxa atualizada com sucesso!", "success")
     except Exception as e:
         con.rollback()
-        app.logger.exception("Erro ao editar taxa: %s", e)
         flash("Não foi possível editar a taxa.", "error")
     finally:
         con.rollback()
@@ -1048,7 +1042,6 @@ def excluir_taxa(id_taxa):
         flash("Taxa excluída com sucesso!", "success")
     except Exception as e:
         con.rollback()
-        app.logger.exception("Erro ao excluir taxa: %s", e)
         flash("Não foi possível excluir a taxa.", "error")
     finally:
         con.rollback()
@@ -1087,8 +1080,7 @@ def salvar_foto():
                 try:
                     os.remove(antigo_caminho)
                 except OSError:
-                    app.logger.exception("A foto antiga não pôde ser removida")
-        flash("Foto atualizada!", "success")
+                    flash("Foto atualizada!", "success")
     except (ValueError, UnidentifiedImageError, OSError, Image.DecompressionBombError):
         con.rollback()
         if caminho and os.path.isfile(caminho):
@@ -1098,7 +1090,6 @@ def salvar_foto():
         con.rollback()
         if caminho and os.path.isfile(caminho):
             os.remove(caminho)
-        app.logger.exception("Erro ao salvar foto")
         flash("Não foi possível salvar a foto.", "error")
     finally:
         cursor.close()
@@ -1191,7 +1182,6 @@ def simular_emprestimo():
         except (ValueError, InvalidOperation) as erro:
             flash(str(erro), "error")
         except Exception:
-            app.logger.exception("Erro ao simular empréstimo")
             flash("Não foi possível simular o empréstimo.", "error")
         finally:
             con.rollback()
@@ -1255,7 +1245,6 @@ def confirmar_emprestimo():
         flash(str(erro), "error")
     except Exception:
         con.rollback()
-        app.logger.exception("Erro ao confirmar empréstimo")
         flash("Não foi possível confirmar. Nenhum lançamento foi confirmado.", "error")
     finally:
         con.rollback()
