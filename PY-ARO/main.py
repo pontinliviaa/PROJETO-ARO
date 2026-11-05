@@ -18,7 +18,7 @@ app.config["SECRET_KEY"] = "Chavesdfglkjhgfdshjkjhgfdcvbmnb"
 app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
 # CONEXÃO COM O BANCO
 host = "localhost"
-database = r"C:\Users\Aluno\Downloads\ARO-main\ARO-main\BANCO.FDB"
+database = r"C:\Users\Aluno\Downloads\ARO_risco_corrigido\ARO-main\BANCO.FDB"
 user = "SYSDBA"
 password = "sysdba"
 
@@ -981,7 +981,6 @@ def cadastrar_taxa():
         flash("Taxa cadastrada com sucesso!", "success")
     except Exception as e:
         con.rollback()
-        app.logger.exception("Erro ao cadastrar taxa: %s", e)
         flash("Não foi possível cadastrar. Confira se já existe uma taxa hoje.", "error")
     finally:
         con.rollback()
