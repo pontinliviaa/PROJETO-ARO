@@ -1,0 +1,11 @@
+{% extends "base_financeiro.html" %}
+{% set titulo = "Histórico de simulações" %}
+{% block conteudo %}
+<h1>Histórico de simulações</h1>
+<p>Simulações concluídas ou não, com seu risco e situação.</p>
+<p><a href="{{ url_for('simular_emprestimo') }}">Voltar à simulação</a></p>
+<section class="cartao"><div class="tabela-rolagem"><table class="tabela-cards"><thead><tr><th>Data</th><th>Exercício</th><th>Valor</th><th>Parcelas</th><th>Taxa</th><th>Parcela</th><th>Total</th><th>Comprometimento</th><th>Risco</th><th>Situação</th></tr></thead><tbody>
+{% for s in registros %}<tr><td>{{ s[0] }}</td><td>{{ s[1] }}</td><td>R$ {{ s[2] }}</td><td>{{ s[3] }}</td><td>{{ s[4] }}%</td><td>R$ {{ s[5] }}</td><td>R$ {{ s[6] }}</td><td>{{ s[7] }}%</td><td>{{ s[8] }}</td><td>{{ s[9] }}</td></tr>
+{% else %}<tr><td colspan="10">Nenhuma simulação registrada.</td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base_financeiro.html" %}
+{% set titulo = "Empréstimos do usuário" %}
+{% block conteudo %}
+<p><a href="{{ url_for('admin_usuarios') }}">← Voltar aos usuários</a></p>
+<h1>Empréstimos de {{ usuario[0] }}</h1>
+<p>{{ usuario[1] }}</p>
+<section class="cartao">
+<h2>Simular empréstimo para este usuário</h2>
+<p>A simulação considera a renda e as despesas deste usuário. Empréstimos de risco alto são bloqueados.</p>
+<form method="POST" class="formulario">
+<input type="hidden" name="acao" value="simular">
+<label>Valor (R$) <input type="number" name="valor" min="0.01" max="1000000" step="0.01" required></label>
+<label>Quantidade de parcelas <input type="number" name="quantidade" min="1" required></label>
+<label>Exercício (ano da taxa) <input type="number" name="ano_exercicio" min="2000" max="2100" step="1" value="{{ ano_atual|default(2026) }}" required></label>
+<button class="botao" type="submit">Simular</button>
+</form>
+</section>
+{% if simulacao %}
+<section class="cartao">
+<h2>Resultado da simulação</h2>
+<p><strong>Valor:</strong> R$ {{ simulacao.valor }} | <strong>Exercício:</strong> {{ simulacao.ano_exercicio }} | <strong>Taxa mensal:</strong> {{ simulacao.percentual }}%</p>
+<p><strong>Juros:</strong> R$ {{ simulacao.juros }} | <strong>Total:</strong> R$ {{ simulacao.total }}</p>
+<p><strong>Parcelas:</strong> {{ simulacao.quantidade }} | <strong>Valor da parcela:</strong> R$ {{ simulacao.parcela }} | <strong>Última parcela:</strong> R$ {{ simulacao.ultima_parcela }}</p>
+<p><strong>Renda considerada:</strong> R$ {{ simulacao.receitas_mes }} | <strong>Despesas:</strong> R$ {{ simulacao.despesas_mes }}</p>
+<p><strong>Comprometimento:</strong> {{ simulacao.comprometimento }}% | <strong>Sobra mensal:</strong> R$ {{ simulacao.sobra }} | <strong>Risco:</strong> {{ simulacao.risco }}</p>
+{% if simulacao.risco != 'Alto' %}
+<form method="POST" onsubmit="return confirm('Confirmar este empréstimo? A receita e as parcelas serão registradas imediatamente.')">
+<input type="hidden" name="acao" value="confirmar">
+<button class="botao" type="submit">Confirmar empréstimo</button>
+</form>
+{% else %}<p>O empréstimo não pode ser confirmado por apresentar risco alto.</p>{% endif %}
+</section>
+{% endif %}
+<section class="cartao">
+<h2>Empréstimos realizados</h2>
+<div class="tabela"><table class="tabela-cards"><thead><tr><th>Número</th><th>Data</th><th>Valor</th><th>Exercício</th><th>Taxa</th><th>Parcelas</th><th>Valor da parcela</th><th>Total</th><th>Risco</th></tr></thead><tbody>
+{% for e in registros %}<tr><td>{{ e[0] }}</td><td>{{ e[7] }}</td><td>R$ {{ e[1] }}</td><td>{{ e[9] }}</td><td>{{ e[2] }}%</td><td>{{ e[3] }}</td><td>R$ {{ e[5] }}</td><td>R$ {{ e[4] }}</td><td>{{ e[8] }}</td></tr>
+{% else %}<tr><td colspan="9">Nenhum empréstimo confirmado para este usuário.</td></tr>{% endfor %}
+</tbody></table></div>
+</section>
+{% endblock %}

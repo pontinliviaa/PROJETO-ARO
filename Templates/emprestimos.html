@@ -14,6 +14,7 @@
                     <th>Número</th>
                     <th>Data</th>
                     <th>Valor recebido</th>
+                    <th>Exercício</th>
                     <th>Taxa mensal</th>
                     <th>Parcelas</th>
                     <th>Parcela</th>
@@ -28,6 +29,7 @@
                     <td data-label="Número">{{ item[0] }}</td>
                     <td data-label="Data">{{ item[7] }}</td>
                     <td data-label="Valor recebido">R$ {{ item[1] }}</td>
+                    <td data-label="Exercício">{{ item[9] }}</td>
                     <td data-label="Taxa mensal">{{ item[2] }}%</td>
                     <td data-label="Parcelas">{{ item[3] }}</td>
                     <td data-label="Parcela">R$ {{ item[5] }}</td>
@@ -37,7 +39,7 @@
                 </tr>
                 {% else %}
                 <tr>
-                    <td colspan="9">Nenhum empréstimo confirmado.</td>
+                    <td colspan="10">Nenhum empréstimo confirmado.</td>
                 </tr>
                 {% endfor %}
             </tbody>

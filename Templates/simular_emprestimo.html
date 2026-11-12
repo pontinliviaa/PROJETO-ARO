@@ -1,7 +1,7 @@
 {% extends "base_financeiro.html" %}
 {% set titulo = "Simular empréstimo" %}
 {% block conteudo %}
-<h1>Simular empréstimo</h1>
+<h1>Simular empréstimo</h1><p><a href="{{ url_for('historico_simulacoes') }}">Ver histórico de simulações</a></p>
 <div class="duas-colunas">
 <section class="cartao">
     <h2>Quanto você precisa?</h2>
@@ -10,21 +10,28 @@
         <label for="valor">Valor do empréstimo (R$)</label>
         <input id="valor" name="valor" type="number" min="0.01" max="1000000" step="0.01" required value="{{ simulacao['valor'] if simulacao else '' }}">
         <label for="quantidade">Quantidade de parcelas</label>
-        <input id="quantidade" name="quantidade" type="number" min="1" max="60" step="1" required value="{{ simulacao['quantidade'] if simulacao else '' }}">
+        <input id="quantidade" name="quantidade" type="number" min="1" step="1" required value="{{ simulacao['quantidade'] if simulacao else '' }}">
+        <label for="ano_exercicio">Exercício (ano da taxa)</label>
+        <input id="ano_exercicio" name="ano_exercicio" type="number" min="2000" max="2100" step="1" required value="{{ simulacao['ano_exercicio'] if simulacao else ano_atual|default(2026) }}">
         <button type="submit">Simular empréstimo</button>
     </form>
-    <p>Juros simples mensais: valor × taxa ÷ 100 × quantidade de parcelas.</p>
-    <p>As receitas de empréstimos não entram na renda usada para avaliar risco. Risco alto: a maior parcela ultrapassa receitas menos despesas do mês atual. Risco médio: cabe na sobra, mas ultrapassa 30% das receitas do mês. Nos demais casos, risco baixo.</p>
+    <p>Parcelas calculadas pela Tabela Price (juros compostos).</p>
+    <p>A análise considera o mês da data do computador. Quando não há lançamentos de receitas ou de despesas nesse mês, usa o valor correspondente informado no perfil, sem somar os dois. As receitas de empréstimos não entram na renda usada para avaliar risco. Risco alto: a maior parcela ultrapassa receitas menos despesas do mês atual. Risco médio: cabe na sobra, mas ultrapassa 30% das receitas do mês. Nos demais casos, risco baixo.</p>
 </section>
 <section class="cartao">
     <h2>Resultado da simulação</h2>
     {% if simulacao %}
     <dl>
-        <dt>Taxa mensal mais recente</dt><dd>{{ simulacao['percentual'] }}%</dd>
+        <dt>Mês considerado</dt><dd>{{ simulacao['mes_referencia'] }}</dd>
+        <dt>Receitas usadas no cálculo</dt><dd>R$ {{ simulacao['receitas_mes'] }} — {{ simulacao['origem_receitas'] }}</dd>
+        <dt>Despesas usadas no cálculo</dt><dd>R$ {{ simulacao['despesas_mes'] }} — {{ simulacao['origem_despesas'] }}</dd>
+        <dt>Exercício</dt><dd>{{ simulacao['ano_exercicio'] }}</dd>
+        <dt>Taxa mensal do exercício</dt><dd>{{ simulacao['percentual'] }}%</dd>
         <dt>Juros totais</dt><dd>R$ {{ simulacao['juros'] }}</dd>
         <dt>Total a devolver</dt><dd>R$ {{ simulacao['total'] }}</dd>
         <dt>Parcelas</dt><dd>{{ simulacao['quantidade'] }} de R$ {{ simulacao['parcela'] }}</dd>
-        <dt>Última parcela (ajuste de centavos)</dt><dd>R$ {{ simulacao['ultima_parcela'] }}</dd>
+        <dt>Última parcela</dt><dd>R$ {{ simulacao['ultima_parcela'] }}</dd>
+        <dt>Comprometimento da renda líquida</dt><dd>{{ simulacao['comprometimento'] }}%</dd>
         <dt>Sobra do mês atual</dt><dd>R$ {{ simulacao['sobra'] }}</dd>
         <dt>Risco</dt><dd>{{ simulacao['risco'] }}</dd>
     </dl>
